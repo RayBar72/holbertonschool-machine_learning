@@ -10,10 +10,10 @@ def matrix_transpose(matrix):
     '''
     m = np.array(matrix).T
     s = list(m.shape)
-    l = []
+    lis = []
     for r in range(s[0]):
         l2 = []
         for x in range(s[1]):
             l2.append(m[r][x])
-        l.append(l2)
-    return l
+        lis.append(l2)
+    return lis
