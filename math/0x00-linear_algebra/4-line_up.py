@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 '''Function that add two array'''
-import numpy as np
 
 
 def add_arrays(arr1, arr2):
     '''Add two arrays'''
-    ar1 = np.array(arr1)
-    ar2 = np.array(arr2)
-    try:
-        ar3 = np.add(arr1, arr2)
-    except Exception as e:
+    if len(arr1) != len(arr2):
         return None
-    return list(ar3)
+    list0 = []
+    for x in range(len(arr1)):
+        list0.append(arr1[x] + arr2[x])
+    return list0

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 '''Function that traspose a matrix'''
-import numpy as np
 
 
 def matrix_transpose(matrix):
@@ -8,12 +7,12 @@ def matrix_transpose(matrix):
     :param matrix: The matrix to transpose
     :return: The transposed matrix
     '''
-    m = np.array(matrix).T
-    s = list(m.shape)
-    lis = []
-    for r in range(s[0]):
-        l2 = []
-        for x in range(s[1]):
-            l2.append(m[r][x])
-        lis.append(l2)
-    return lis
+    row = len(matrix)
+    col = len(matrix[0])
+    matrir = []
+    for i in range(col):
+        list0 = []
+        for j in range(row):
+            list0.append(matrix[j][i])
+        matrir.append(list0)
+    return matrir

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 '''Function tha calculates the shape of a matrix'''
-import numpy as np
 
 
 def matrix_shape(matrix):
@@ -13,6 +12,7 @@ def matrix_shape(matrix):
     -------
     int
         The shape of the of matrix'''
-    m = np.array(matrix)
-    r = list(m.shape)
-    return r
+    if type(matrix[0]) != list:
+        return [len(matrix)]
+    else:
+        return [len(matrix)] + matrix_shape(matrix[0])
