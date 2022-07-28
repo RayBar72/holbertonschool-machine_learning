@@ -33,7 +33,7 @@ def cat_matrices(mat1, mat2, axis=0):
     '''Concatenates two matrices'''
     uno = len(matrix_shape(mat1))
     dos = len(matrix_shape(mat2))
-    if uno > axis and dos > axis and uno == dos:
+    if uno >= axis and dos >= axis and uno == dos:
         return matrix_creation(mat1, mat2, axis)
     else:
         return None
