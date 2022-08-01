@@ -15,7 +15,7 @@ student_grades = np.random.normal(68, 15, 50)
 
 plt.hist(student_grades, bins=range(10, 101, 10), edgecolor='black')
 plt.xlabel('Grades')
-plt.xlim(0,100)
+plt.xlim(0, 100)
 plt.xticks(range(0, 101, 10))
 plt.ylabel('Number of Students')
 plt.ylim(0, 30)
