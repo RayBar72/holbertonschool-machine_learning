@@ -1,8 +1,3 @@
-
-Curriculum
-Specializations
-Average: 194.0%
-You just released the optional tasks of this project. Have fun!
 0x01. Plotting
  By Alexa Orrico, Software Engineer at Holberton School
  Weight: 1
