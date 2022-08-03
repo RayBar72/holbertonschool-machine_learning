@@ -4,22 +4,20 @@
 
 def poly_derivative(poly):
     '''Function that casculates polynomial derivatives'''
-    if type(poly) != list:
-        return None
-    if not poly:
-        return None
-    for x in poly:
-        if type(x) is not int or type(x) is not float:
-            return None
     ls = []
     largo = len(poly)
-    if largo == 0:
+    if type(poly) != list:
         return None
-    if largo == 1:
+    elif not poly:
+        return None
+    elif largo == 0:
+        return None
+    elif largo == 1:
         return ls.append(0)
-    for i in range(largo):
-        if i == 0:
-            pass
-        else:
-            ls.append(poly[i] * i)
+    else:
+        for i in range(largo):
+            if i == 0:
+                pass
+            else:
+                ls.append(poly[i] * i)
     return ls
