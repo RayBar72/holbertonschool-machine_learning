@@ -6,6 +6,8 @@ def poly_derivative(poly):
     '''Function that casculates polynomial derivatives'''
     if type(poly) != list:
         return None
+    if not poly:
+        return None
     ls = []
     largo = len(poly)
     if largo == 0:
