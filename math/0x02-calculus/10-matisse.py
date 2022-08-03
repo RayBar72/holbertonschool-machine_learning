@@ -14,12 +14,14 @@ def poly_derivative(poly):
         return None
     elif largo == 0:
         return None
-    elif largo == 1:
-        return [0]
+    # elif largo == 1:
+    #     return [0]
     else:
         for i in range(largo):
             if type(poly[i]) is int or type(poly[i]) is float:
-                if i == 0:
+                if largo == 1:
+                    return [0]
+                elif i == 0:
                     pass
                 else:
                     ls.append(poly[i] * i)
