@@ -31,3 +31,7 @@ print('----------------------------------------------------------------')
 # prueba
 poly = [8, 1, 10, 0, 12, 0, 14, 15, 16]
 print(poly_derivative(poly))
+
+poly = [0, 0, 0]
+print(poly_derivative(poly))
+

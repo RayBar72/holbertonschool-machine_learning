@@ -27,4 +27,7 @@ def poly_derivative(poly):
                     ls.append(poly[i] * i)
             else:
                 return None
-    return ls
+    if all(x == 0 for x in ls):
+        return [0]
+    else:
+        return ls
