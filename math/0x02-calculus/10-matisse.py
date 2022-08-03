@@ -6,14 +6,16 @@ def poly_derivative(poly):
     '''Function that casculates polynomial derivatives'''
     ls = []
     largo = len(poly)
-    if type(poly) != list:
+    if type(poly) is not list:
         return None
     elif not poly:
+        return None
+    elif None in poly:
         return None
     elif largo == 0:
         return None
     elif largo == 1:
-        return ls.append(0)
+        return [0]
     else:
         for i in range(largo):
             if i == 0:
