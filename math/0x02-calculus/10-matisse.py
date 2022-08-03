@@ -8,6 +8,8 @@ def poly_derivative(poly):
         return None
     ls = []
     largo = len(poly)
+    if largo == 0:
+        return None
     if largo == 1:
         return ls.append(0)
     for i in range(largo):
