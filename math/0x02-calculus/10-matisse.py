@@ -18,8 +18,11 @@ def poly_derivative(poly):
         return [0]
     else:
         for i in range(largo):
-            if i == 0:
-                pass
+            if type(poly[i]) is int or type(poly[i]) is float:
+                if i == 0:
+                    pass
+                else:
+                    ls.append(poly[i] * i)
             else:
-                ls.append(poly[i] * i)
+                return None
     return ls
