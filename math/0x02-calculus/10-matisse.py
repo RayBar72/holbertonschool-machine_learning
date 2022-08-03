@@ -13,7 +13,7 @@ def poly_derivative(poly):
     elif None in poly:
         return None
     elif largo == 0:
-        return [0]
+        return None
     elif largo == 1:
         return [0]
     else:
