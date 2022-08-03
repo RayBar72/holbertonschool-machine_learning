@@ -25,4 +25,4 @@ def summation_i_squared(n):
     if n == 1:
         return 1
     ls = []
-    return sum(sumation_recursive(ls, n))
+    return int(sum(sumation_recursive(ls, n)))
