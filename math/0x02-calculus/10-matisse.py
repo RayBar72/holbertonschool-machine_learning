@@ -18,7 +18,7 @@ def poly_derivative(poly):
     #     return [0]
     else:
         for i in range(largo):
-            if type(poly[i]) is int:# or type(poly[i]) is float:
+            if type(poly[i]) is int or type(poly[i]) is float:
                 if largo == 1:
                     return [0]
                 elif i == 0:
