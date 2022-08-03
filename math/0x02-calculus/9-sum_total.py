@@ -20,7 +20,9 @@ def sumation_recursive(ls, n):
 
 def summation_i_squared(n):
     '''Function that calculates sumatory'''
-    if n < 1 or type(n) is not int or n is None:
+    if (n < 1) or (type(n) is not int) or (n is None):
         return None
+    if n == 1:
+        return 1
     ls = []
     return sum(sumation_recursive(ls, n))
