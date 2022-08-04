@@ -19,7 +19,7 @@ def poly_integral(poly, C=0):
     if largo == 0:
         return ls.append(C)
     for i in range(largo):
-        if isinstance(poly[i], (int, float)) and poly[i] != None:
+        if isinstance(poly[i], (int, float)) and poly[i] is not None:
             if i == 0:
                 ls.append(C)
                 ls.append(poly[i])
