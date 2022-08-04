@@ -10,17 +10,10 @@ def poly_derivative(poly):
         return None
     if largo == 0:
         return None
-    for i in range(largo):
-        if isinstance(i, (int, float)):
-            if largo == 1:
-                return [0]
-            elif i == 0:
-                pass
-            else:
-                ls.append(poly[i] * i)
-        else:
-            return None
+    if (not all(isinstance(x, (int, float)) for x in poly)):
+        return None
+    for i in range(1, largo):
+        ls.append(poly[i] * i)
     if all(x == 0 for x in ls):
         return [0]
-    else:
-        return ls
+    return ls
