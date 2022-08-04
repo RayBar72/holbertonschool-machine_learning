@@ -14,12 +14,11 @@ def poly_integral(poly, C=0):
         return None
     if not isinstance(C, (int, float)) or C is None:
         return None
+    ls.append(C)
+    if len(poly) == 0:
+        return ls
     for i, x in enumerate(poly):
-        if i == 0:
-            ls.append(C)
-            ls.append(x)
-        else:
-            ls.append(x / (i + 1))
+        ls.append(x / (i + 1))
     for i in range(len(ls)):
         if ls[i] % 1 == 0:
             ls[i] = int(ls[i])
