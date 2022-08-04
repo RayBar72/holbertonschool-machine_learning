@@ -4,16 +4,13 @@
 
 def poly_derivative(poly):
     '''Function that caculates polynomial derivatives'''
-    ls = []
-    largo = len(poly)
-    if type(poly) is not list:
+    aux = []
+    if (type(poly) is not list) or (len(poly) == 0):
         return None
-    if largo == 0:
+    if (not all(isinstance(n, int) or isinstance(n, float) for n in poly)):
         return None
-    if (not all(isinstance(x, (int, float)) for x in poly)):
-        return None
-    for i in range(1, largo):
-        ls.append(poly[i] * i)
-    if all(x == 0 for x in ls):
+    for i in range(1, len(poly)):
+        aux.append(i * poly[i])
+    if all(a == 0 for a in aux):
         return [0]
-    return ls
+    return aux
