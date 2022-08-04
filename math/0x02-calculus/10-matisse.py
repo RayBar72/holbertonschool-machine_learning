@@ -10,15 +10,15 @@ def poly_derivative(poly):
         return None
     elif not poly:
         return None
-    # elif None in poly:
-    #     return None
+    elif None in poly:
+        return None
     # elif largo == 0:
     #     return None
     # elif largo == 1:
     #     return [0]
     else:
         for i in range(largo):
-            if type(poly[i]) is int or type(poly[i]) is float:
+            if isinstance(i, (int, float)):
                 if largo == 1:
                     return [0]
                 elif i == 0:
