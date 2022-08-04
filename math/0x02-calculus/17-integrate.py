@@ -5,7 +5,6 @@
 def poly_integral(poly, C=0):
     '''Function that calculates the integral of polynomial'''
     ls = []
-    largo = len(poly)
     # Validate the list
     if type(poly) != list:
         return None
@@ -16,9 +15,9 @@ def poly_integral(poly, C=0):
     # Validate C
     if not isinstance(C, (int, float)):
         return None
-    if largo == 0:
+    if len(poly) == 0:
         return ls.append(C)
-    for i in range(largo):
+    for i in range(len(poly)):
         if isinstance(poly[i], (int, float)) and poly[i] is not None:
             if i == 0:
                 ls.append(C)
