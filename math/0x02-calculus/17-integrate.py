@@ -8,22 +8,18 @@ def poly_integral(poly, C=0):
     # Validate the list
     if type(poly) != list:
         return None
-    # if not poly:
-    #     return None
-    # if None in poly:
-    #     return None
-    # Validate C
-    if not isinstance(C, (int, float)):
-        return None
     if len(poly) == 0:
         return ls.append(C)
-    for i in range(len(poly)):
-        if isinstance(poly[i], (int, float)) and poly[i] is not None:
-            if i == 0:
-                ls.append(C)
-                ls.append(poly[i])
-            else:
-                ls.append(poly[i] / (i + 1))
+    if (not all(isinstance(x, (int, float)) for x in poly)):
+        return None
+    if not isinstance(C, (int, float)):
+        return None
+    for i, x in enumerate(poly):
+        if i == 0:
+            ls.append(C)
+            ls.append(x)
+        else:
+            ls.append(x / (i + 1))
     for i in range(len(ls)):
         if ls[i] % 1 == 0:
             ls[i] = int(ls[i])
