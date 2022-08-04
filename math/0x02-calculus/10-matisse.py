@@ -3,7 +3,7 @@
 
 
 def poly_derivative(poly):
-    '''Function that casculates polynomial derivatives'''
+    '''Function that caculates polynomial derivatives'''
     ls = []
     largo = len(poly)
     if type(poly) is not list:
