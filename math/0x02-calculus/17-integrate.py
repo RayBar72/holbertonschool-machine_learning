@@ -30,4 +30,12 @@ def poly_integral(poly, C=0):
             ls[i] = int(ls[i])
     if all(x == 0 for x in ls):
         return [0]
+    if len(ls) != 0:
+        for i in range(len(ls) - 1, -1, - 1):
+            if ls[i] == 0:
+                print('valor i {}'.format(i))
+                print('valro ls[i] {}'.format(ls[i]))
+                ls.pop()
+            else:
+                break
     return ls
