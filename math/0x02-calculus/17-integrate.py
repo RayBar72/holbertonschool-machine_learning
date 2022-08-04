@@ -12,7 +12,7 @@ def poly_integral(poly, C=0):
         return ls.append(C)
     if (not all(isinstance(x, (int, float)) for x in poly)):
         return None
-    if not isinstance(C, (int, float)):
+    if not isinstance(C, (int, float)) or C is None:
         return None
     for i, x in enumerate(poly):
         if i == 0:
