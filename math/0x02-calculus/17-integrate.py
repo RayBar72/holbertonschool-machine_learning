@@ -11,15 +11,15 @@ def poly_integral(poly, C=0):
         return None
     # if not poly:
     #     return None
-    if None in poly:
-        return None
+    # if None in poly:
+    #     return None
     # Validate C
     if not isinstance(C, (int, float)):
         return None
     if largo == 0:
         return ls.append(C)
     for i in range(largo):
-        if isinstance(poly[i], (int, float)):
+        if isinstance(poly[i], (int, float)) and poly[i] != None:
             if i == 0:
                 ls.append(C)
                 ls.append(poly[i])
