@@ -2,9 +2,6 @@
 '''Modulus that represents a binomial distribution'''
 
 
-from math import factorial
-
-
 class Binomial:
     '''Class that represents the binomial distribution'''
     # pi = 3.1415926536
