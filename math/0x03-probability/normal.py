@@ -24,11 +24,11 @@ class Normal:
                 x = 0
                 for i, y in enumerate(data):
                     x += y
-                i +=1
+                i += 1
                 x = x / i
                 sigma = 0
                 for z in data:
-                    sigma += (z -x) ** 2
+                    sigma += (z - x) ** 2
                 sigma = (sigma / i) ** 0.5
                 self.mean = float(x)
                 self.stddev = float(sigma)
@@ -57,5 +57,6 @@ class Normal:
         '''Claculates the value of the CDF for a given x-value'''
         y = (x - self.mean) / ((self.stddev) * (2 ** 0.5))
         const = 2 / (Normal.pi ** 0.5)
-        poli = y - ((y ** 3) / 3) + ((y ** 5) / 10) - ((y ** 7) / 42) + ((y ** 9) / 216)
+        poli = y - ((y ** 3) / 3) + ((y ** 5) / 10) - (
+                (y ** 7) / 42) + ((y ** 9) / 216)
         return ((1 + const * poli) * (1 / 2))
