@@ -54,8 +54,8 @@ class Binomial:
             k = int(k)
         if k < 0:
             return 0
-        div = factorial(k) * factorial(self.n - k)
-        coci = factorial(self.n)
+        div = self.factorial(k) * self.factorial(self.n - k)
+        coci = self.factorial(self.n)
         mult = (self.p ** k) * ((1 - self.p) ** (self.n - k))
         return (coci / div) * mult
 
