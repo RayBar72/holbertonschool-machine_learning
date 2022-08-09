@@ -52,7 +52,7 @@ class Binomial:
         '''Calculates the value of the PMF for a given number of “successes”'''
         if not isinstance(k, int):
             k = int(k)
-        if k < 0:
+        if k < 0 or k > self.n:
             return 0
         div = self.factorial(k) * self.factorial(self.n - k)
         coci = self.factorial(self.n)
