@@ -41,7 +41,7 @@ class Binomial:
             self.n = n
             self.p = x / n
 
-    def factorial(x):
+    def factorial(self, x):
         '''Calculates factorial of a given number'''
         y = 1
         for i in range(1, x + 1):
@@ -54,9 +54,10 @@ class Binomial:
             k = int(k)
         if k < 0 or k > self.n:
             return 0
-        div = self.factorial(k) * self.factorial(self.n - k)
+        nk = self.n - k
+        div = (self.factorial(k)) * (self.factorial(nk))
         coci = self.factorial(self.n)
-        mult = (self.p ** k) * ((1 - self.p) ** (self.n - k))
+        mult = (self.p ** k) * ((1 - self.p) ** (nk))
         return (coci / div) * mult
 
     def cdf(self, k):
