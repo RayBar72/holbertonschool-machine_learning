@@ -8,9 +8,9 @@ class Binomial:
     def __init__(self, data=None, n=1, p=0.5):
         '''Class constructor'''
         if data is None:
-            if n < 0:  # Ojo está con valor que incluye cero
+            if n <= 0:  # Ojo está con valor que incluye cero
                 raise ValueError('n must be a positive value')
-            if p > 1 or p < 0:
+            if p >= 1 or p <= 0:
                 raise ValueError('p must be greater than 0 and less than 1')
             else:
                 self.p = p
