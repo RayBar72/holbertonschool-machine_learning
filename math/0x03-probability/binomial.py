@@ -8,6 +8,7 @@ class Binomial:
     def __init__(self, data=None, n=1, p=0.5):
         '''Class constructor'''
         if data is None:
+            n = int(n)
             if n < 1:  # Ojo está con valor que incluye cero
                 raise ValueError('n must be a positive value')
             if p >= 1 or p <= 0:
@@ -36,7 +37,7 @@ class Binomial:
             # Calculating n
             n = 0
             n = x / p
-            n = round(n, 0)
+            n = int(round(n, 0))
             self.n = n
             self.p = x / n
 
