@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 '''Module that has class Neuron'''
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 class Neuron():
@@ -70,7 +71,8 @@ class Neuron():
         self.__W = self.__W - (alpha * dw)
         self.__b = self.__b - (alpha * db)
 
-    def train(self, X, Y, iterations=5000, alpha=0.05):
+    def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True,
+              graph=True, step=100):
         '''
         Method that trains the neuron
         '''
@@ -82,8 +84,28 @@ class Neuron():
             raise TypeError('alpha must be a float')
         if alpha < 0:
             raise ValueError('alpha must be positive')
+        if verbose is not True or graph is not True:
+            if not isinstance(step, int):
+                raise TypeError('step must be an integer')
+            if step < 0:
+                raise ValueError('step must be positive and <= iterations')
+        iteration = []
+        c = []
         for i in range(iterations):
             a, cost = self.evaluate(X, Y)
             self.__A = self.forward_prop(X)
             self.gradient_descent(X, Y, self.__A, alpha)
+            
+            if i % step == 0:
+                iteration.append(i)
+                c.append(cost)
+                if verbose:
+                    print('Cost after {} iterations: {}'.format(i, cost))
+                    
+        if graph:    
+            plt.plot(iteration, c, 'b')
+            plt.xlabel('iteration')
+            plt.ylabel('cost')
+            plt.title('Training Cost')
+            plt.show()
         return self.evaluate(X, Y)
