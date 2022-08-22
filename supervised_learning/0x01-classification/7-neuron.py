@@ -95,14 +95,12 @@ class Neuron():
             a, cost = self.evaluate(X, Y)
             self.__A = self.forward_prop(X)
             self.gradient_descent(X, Y, self.__A, alpha)
-            
             if i % step == 0:
                 iteration.append(i)
                 c.append(cost)
                 if verbose:
                     print('Cost after {} iterations: {}'.format(i, cost))
-                    
-        if graph:    
+        if graph:
             plt.plot(iteration, c, 'b')
             plt.xlabel('iteration')
             plt.ylabel('cost')
