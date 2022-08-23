@@ -10,22 +10,21 @@ class DeepNeuralNetwork():
     '''Class that defines a deep neural network'''
     def __init__(self, nx, layers):
         '''Class constructur'''
-        if not isinstance(nx, int):
+        if type(nx) is not int:
             raise TypeError('nx must be an integer')
         if nx < 1:
             raise ValueError('nx must be a positive integer')
-        if not isinstance(layers, list):
+        if type(layers) is not list:
             raise TypeError('layers must be a list of positive integers')
         if len(layers) == 0:
             raise TypeError('layers must be a list of positive integers')
-        self.nx = nx
         self.L = len(layers)
         self.cache = {}
         weights = {}
-        for x in range(len(layers)):
-            if layers[x] < 1:
+        for x in range(self.L):
+            if type(layers[x]) is not int:
                 raise TypeError('layers must be a list of positive integers')
-            if not isinstance(layers[x], int):
+            if layers[x] < 1:
                 raise TypeError('layers must be a list of positive integers')
             weights['b' + str(x + 1)] = np.zeros([layers[x], 1])
             if x == 0:
