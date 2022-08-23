@@ -3,8 +3,8 @@
 Module that defines a deep neural network
 performing binary classification
 '''
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import pickle
 
 
@@ -166,7 +166,7 @@ class DeepNeuralNetwork():
         '''
         try:
             with open(filename, "rb") as f:
-                fOpen = pickle.load(f)
+                fOpen = pickle.loads(f)
             return fOpen
         except FileNotFoundError:
             return None
