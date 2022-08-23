@@ -78,7 +78,7 @@ class DeepNeuralNetwork():
 
     def evaluate(self, X, Y):
         '''
-        Evaluates the neural network’s predictions
+        Evaluates the neural networks predictions
         '''
         a, _ = self.forward_prop(X)
         P = np.where(a >= 0.5, 1, 0)
@@ -133,8 +133,8 @@ class DeepNeuralNetwork():
         iteration = []
         c = []
         for x in range(iterations + 1):
-            a, cost = self.evaluate(X, Y)
             self.forward_prop(X)
+            a, cost = self.evaluate(X, Y)
             self.gradient_descent(Y, self.__cache, alpha)
             if x % step == 0:
                 iteration.append(x)
