@@ -114,13 +114,13 @@ class DeepNeuralNetwork():
         Trains the deep neural network
         '''
         if type(iterations) is not int:
-            raise TypeError('the exception iterations must be an integer')
+            raise TypeError('iterations must be an integer')
         if iterations < 0:
             raise ValueError(
-                'the exception iterations must be a positive integer'
+                'iterations must be a positive integer'
                 )
         if type(alpha) is not float:
-            raise TypeError('the exception alpha must be a float')
+            raise TypeError('alpha must be a float')
         if alpha < 0:
             raise ValueError('alpha must be positive')
         for x in range(iterations):
