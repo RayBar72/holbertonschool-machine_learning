@@ -96,7 +96,7 @@ class DeepNeuralNetwork():
             a_0 = 'A' + str(i)
             A = cache[a]
             A_0 = cache[a_0]
-            if i == self.__L -1:
+            if i == self.__L - 1:
                 dz = A - Y
                 W = self.__weights[w]
             else:
