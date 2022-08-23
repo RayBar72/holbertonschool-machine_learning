@@ -55,7 +55,7 @@ class DeepNeuralNetwork():
         of the neural network
         '''
         m = self.__L
-        x = X
+        x = self.__cache['A0'] = X
         for i in range(m):
             w = self.__weights['W' + str(i + 1)]
             b = self.__weights['b' + str(i + 1)]
