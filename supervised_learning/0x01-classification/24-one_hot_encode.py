@@ -17,6 +17,8 @@ def one_hot_encode(Y, classes):
         return None
     if not isinstance(classes, int):
         return None
+    if classes <= np.amax(Y):
+        return None
     retorno = np.zeros([classes, len(Y)])
     retorno[Y, np.arange(len(Y))] = 1
     return retorno
