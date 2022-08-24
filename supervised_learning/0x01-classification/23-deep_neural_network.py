@@ -135,12 +135,13 @@ class DeepNeuralNetwork():
         for x in range(iterations + 1):
             a, cost = self.evaluate(X, Y)
             self.forward_prop(X)
-            self.gradient_descent(Y, self.__cache, alpha)
             if x % step == 0:
                 iteration.append(x)
                 c.append(cost)
                 if verbose:
                     print('Cost after {} iterations: {}'.format(x, cost))
+            if x < iterations:
+                self.gradient_descent(Y, self.__cache, alpha)
         if graph:
             plt.plot(iteration, c, 'b')
             plt.xlabel('iteration')
