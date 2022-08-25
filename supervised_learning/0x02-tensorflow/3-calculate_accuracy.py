@@ -22,10 +22,6 @@ def calculate_accuracy(y, y_pred):
     Tensor containing the decimal acuracy of the prediction.
 
     '''
-    # yes_not = tf.equal(tf.argmax(y, 1), tf.argmax(y_pred, 1))
-    # accura = tf.reduce_mean(tf.cast(yes_not, tf.float32))
-    # return accura
-    accuracy = tf.metrics.accuracy(labels=y,
-                                        predictions=y_pred,
-                                        name='accuracy')
-    return accuracy
+    yes_not = tf.equal(tf.argmax(y, 1), tf.argmax(y_pred, 1))
+    accura = tf.reduce_mean(tf.cast(yes_not, tf.float32))
+    return accura
