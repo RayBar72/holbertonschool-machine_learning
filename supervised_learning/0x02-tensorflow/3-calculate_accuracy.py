@@ -5,6 +5,7 @@ that calculates the accuracy of a prediction
 '''
 import tensorflow.compat.v1 as tf
 
+
 def calculate_accuracy(y, y_pred):
     '''
     Function that calculates the accuracy of a prediction
@@ -21,6 +22,10 @@ def calculate_accuracy(y, y_pred):
     Tensor containing the decimal acuracy of the prediction.
 
     '''
-    yes_not = tf.equal(y, y_pred)
-    accura = tf.reduce_mean(tf.cast(yes_not, tf.float32))
-    return accura
+    # yes_not = tf.equal(tf.argmax(y, 1), tf.argmax(y_pred, 1))
+    # accura = tf.reduce_mean(tf.cast(yes_not, tf.float32))
+    # return accura
+    accuracy = tf.metrics.accuracy(labels=y,
+                                        predictions=y_pred,
+                                        name='accuracy')
+    return accuracy
