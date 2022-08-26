@@ -33,5 +33,5 @@ def evaluate(X, Y, save_path):
         loss = tf.get_collection('loss')[0]
         eva_y = session.run(y_pred, feed_dict={x: X, y: Y})
         eva_accuracy = session.run(accuracy, feed_dict={x: X, y: Y})
-        eva_loss =session.run(loss, feed_dict={x: X, y: Y})
+        eva_loss = session.run(loss, feed_dict={x: X, y: Y})
         return eva_y, eva_accuracy, eva_loss
