@@ -7,7 +7,6 @@ def shuffle_data(X, Y):
     '''Shuffle data X, Y'''
     m = X.shape[0]
     shuf_vect = np.random.permutation(m)
-    print(shuf_vect)
     x = X[shuf_vect]
     y = Y[shuf_vect]
     return x, y
