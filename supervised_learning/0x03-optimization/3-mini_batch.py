@@ -1,14 +1,30 @@
 #!/usr/bin/env python3
 '''Function that trains a loaded neural network'''
-import numpy as np
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 shuffle_data = __import__('2-shuffle_data').shuffle_data
 
 
 def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
                      batch_size=32, epochs=5, load_path="/tmp/model.ckpt",
                      save_path="/tmp/model.ckpt"):
-    '''Train a mini-batch of training data'''
+    '''
+    Train a mini-batch of training data
+    Args:
+        X_train: numpy.ndarray of shape (m, 784)
+                 contains training data
+        Y_train: one-hot numpy.ndarray of shape (m, 10)
+                 contains training labels
+        X_valid: numpy.ndarray of shape (m, 784)
+                 contains validation data
+        Y_valid: one-hot numpy.ndarray of shape (m, 10)
+                 contains validation labels
+        batch_size: type int number of data points in a batch
+        epochs: type int number of times the training should pass
+                through the whole dataset
+        load_path: path from which to load the model
+        save_path: path to where the model should be saved after training
+    Returns: path where the model was saved
+    '''
     with tf.Session() as session:
         saved = tf.train.import_meta_graph('{}.meta'.format(load_path))
         saved.restore(session, load_path)
