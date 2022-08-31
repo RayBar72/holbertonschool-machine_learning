@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''Function that creates_Adam_op'''
-import tensorflow.compat.v1 as ts
+import tensorflow.compat.v1 as tf
 
 
 def create_Adam_op(loss, alpha, beta1, beta2, epsilon):
