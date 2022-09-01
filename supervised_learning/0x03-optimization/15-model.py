@@ -9,28 +9,21 @@ import tensorflow.compat.v1 as tf
 def shuffle_data(X, Y):
     '''Shuffle data X, Y'''
     m = X.shape[0]
-    shuf_vect = np.random.permutation(m)
-    x = X[shuf_vect]
-    y = Y[shuf_vect]
-    return x, y
-
-
-def create_placeholders(nx, classes):
-    '''Function that create a placeholder'''
-    x = tf.placeholder(tf.float32, shape=[None, nx], name='x')
-    y = tf.placeholder(tf.float32, shape=[None, classes], name='y')
+    shuf_vect = list(np.random.permutation(m))
+    x = X[shuf_vect, :]
+    y = Y[shuf_vect, :]
     return x, y
 
 
 def create_layer(prev, n, activation):
     '''Function that creates a layer'''
     activa = tf.keras.initializers.VarianceScaling(mode='fan_avg')
-    layer = tf.layers.Dense(n, activation=activation,
+    layer = tf.layers.Dense(units=n, activation=activation,
                             kernel_initializer=activa, name='layer')
     return layer(prev)
 
 
-def batch_norm(prev, n, activations):
+def create_batch_norm_layer(prev, n, activation):
     '''Function thar normalizes'''
     activa = tf.keras.initializers.VarianceScaling(mode='fan_avg')
     layer = tf.layers.Dense(units=n, kernel_initializer=activa)
@@ -38,9 +31,9 @@ def batch_norm(prev, n, activations):
     mu, sigma_2 = tf.nn.moments(Z, axes=[0])
     epsilon = 1e-8
     gamma = tf.Variable(initial_value=tf.constant(1.0, shape=[n]),
-                        name='gamma')
+                        name='gamma', trainable=True)
     beta = tf.Variable(initial_value=tf.constant(0.0, shape=[n]),
-                       name='beta')
+                       name='beta', trainable=True)
     Z_b_norm = tf.nn.batch_normalization(
         Z,
         mu,
@@ -48,20 +41,16 @@ def batch_norm(prev, n, activations):
         beta,
         gamma,
         epsilon)
-    if activations is None:
+    if activation is None:
         return Z_b_norm
-    return activations(Z_b_norm)
+    return activation(Z_b_norm)
 
 
-def forward_prop(prev, layers=[], activations=[]):
-    '''Function that makes forward propagation'''
-    estimation = batch_norm(prev, layers[0], activations[0])
-    for i in range(1, len(layers)):
-        if i != len(layers) - 1:
-            estimation = batch_norm(estimation, layers[i], activations[i])
-        else:
-            estimation = create_layer(estimation, layers[i], activations[i])
-    return estimation
+def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
+    '''Function that calculates learning rate decay'''
+    learning = tf.train.inverse_time_decay(alpha, global_step, decay_step,
+                                           decay_rate, staircase=True)
+    return learning
 
 
 def create_Adam_op(loss, alpha, beta1, beta2, epsilon):
@@ -70,11 +59,16 @@ def create_Adam_op(loss, alpha, beta1, beta2, epsilon):
     return adam.minimize(loss)
 
 
-def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
-    '''Function that calculates learning rate decay'''
-    learning = tf.train.inverse_time_decay(alpha, global_step, decay_step,
-                                           decay_rate, staircase=True)
-    return learning
+def forward_prop(prev, layers=[], activations=[]):
+    '''Function that makes forward propagation'''
+    estimation = create_batch_norm_layer(prev, layers[0], activations[0])
+    for i in range(1, len(layers)):
+        if i != len(layers) - 1:
+            estimation = create_batch_norm_layer(estimation, layers[i],
+                                                 activations[i])
+        else:
+            estimation = create_layer(estimation, layers[i], activations[i])
+    return estimation
 
 
 def calculate_accuracy(y, y_pred):
@@ -98,8 +92,9 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9,
     classes = Data_train[1].shape[1]
     (X_train, Y_train) = Data_train
     (X_valid, Y_valid) = Data_valid
-    x, y = create_placeholders(nx, classes)
+    x = tf.placeholder(tf.float32, shape=[None, nx], name="x")
     tf.add_to_collection("x", x)
+    y = tf.placeholder(tf.float32, shape=[None, classes], name="y")
     tf.add_to_collection("y", y)
     y_pred = forward_prop(x, layers, activations)
     tf.add_to_collection("y_pred", y_pred)
