@@ -25,15 +25,15 @@ def create_placeholders(nx, classes):
 def create_layer(prev, n, activation):
     '''Function that creates a layer'''
     activa = tf.keras.initializers.VarianceScaling(mode='fan_avg')
-    layer = tf.layers.Dense(n, activation=None,
+    layer = tf.layers.Dense(units=n, activation=activation,
                             kernel_initializer=activa, name='layer')
     return layer(prev)
 
 
-def batch_norm(prev, n, activations, epsilon):
+def batch_norm(prev, n, activations, epsilon=1e-8):
     '''Function thar normalizes'''
     activa = tf.keras.initializers.VarianceScaling(mode='fan_avg')
-    layer = tf.layers.Dense(n, activation=None,
+    layer = tf.layers.Dense(units=n, activation=None,
                             kernel_initializer=activa, name='layer')
     Z = layer(prev)
     mu, sigma_2 = tf.nn.moments(Z, axes=[0])
@@ -42,7 +42,8 @@ def batch_norm(prev, n, activations, epsilon):
     beta = tf.Variable(initial_value=tf.constant(0.0, shape=[n]),
                        name='beta')
     Z_b_norm = tf.nn.batch_normalization(
-        Z, mu,
+        Z,
+        mu,
         sigma_2,
         offset=beta,
         scale=gamma,
@@ -50,15 +51,14 @@ def batch_norm(prev, n, activations, epsilon):
     return activations(Z_b_norm)
 
 
-def forward_prop(prev, layers, activations, epsilon):
+def forward_prop(prev, layers, activations):
     '''Function that makes forward propagation'''
-    estimation = batch_norm(prev, layers[0], activations[0], epsilon)
+    estimation = batch_norm(prev, layers[0], activations[0])
     for i in range(1, len(layers)):
-        if i == len(layers) - 1:
-            estimation = create_layer(estimation, layers[i], activations[i])
+        if i != len(layers) - 1:
+            estimation = batch_norm(estimation, layers[i], activations[i])
         else:
-            estimation = batch_norm(estimation, layers[i],
-                                    activations[i], epsilon)
+            estimation = create_layer(estimation, layers[i], activations[i])
     return estimation
 
 
@@ -99,7 +99,7 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9,
     x, y = create_placeholders(nx, classes)
     tf.add_to_collection('x', x)
     tf.add_to_collection('y', y)
-    y_pred = forward_prop(x, layers, activations, epsilon)
+    y_pred = forward_prop(x, layers, activations)
     tf.add_to_collection('y_pred', y_pred)
     loss = calculate_loss(y, y_pred)
     tf.add_to_collection('loss', loss)
@@ -117,10 +117,10 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9,
         m = X_train.shape[0]
         if m % batch_size == 0:
             mini = int(m / batch_size)
-            case = 0
+            case = 1
         else:
             mini = int(m / batch_size) + 1
-            case = 1
+            case = 0
         for epoch in range(epochs + 1):
             d_train = {x: X_train, y: Y_train}
             d_valid = {x: X_valid, y: Y_valid}
@@ -139,7 +139,7 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9,
                 for step_number in range(mini):
                     a_0 = step_number * batch_size
                     a_1 = (step_number + 1) * batch_size
-                    if case == 0 and step_number == mini:
+                    if case == 0 and step_number == mini - 1:
                         x_m = Xsh[a_0::]
                         y_m = Ysh[a_0::]
                     else:
