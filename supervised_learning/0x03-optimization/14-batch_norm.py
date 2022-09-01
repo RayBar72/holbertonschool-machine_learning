@@ -27,11 +27,14 @@ def create_batch_norm_layer(prev, n, activation):
 
     '''
     activa = tf.keras.initializers.VarianceScaling(mode='fan_avg')
-    layer = tf.layers.Dense(n, activation=None, kernel_initializer=activa, name='layer')
+    layer = tf.layers.Dense(n, activation=None,
+                            kernel_initializer=activa, name='layer')
     Z = layer(prev)
     mu, sigma_2 = tf.nn.moments(Z, axes=[0])
-    gamma = tf.Variable(initial_value=tf.constant(1.0, shape=[n]), name='gamma')
-    beta = tf.Variable(initial_value=tf.constant(0.0, shape=[n]), name='beta')
+    gamma = tf.Variable(initial_value=tf.constant(1.0, shape=[n]),
+                        name='gamma')
+    beta = tf.Variable(initial_value=tf.constant(0.0, shape=[n]),
+                       name='beta')
     Z_b_norm = tf.nn.batch_normalization(
         Z, mu,
         sigma_2,
