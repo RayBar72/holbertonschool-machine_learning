@@ -25,7 +25,7 @@ def create_placeholders(nx, classes):
 def create_layer(prev, n, activation):
     '''Function that creates a layer'''
     activa = tf.keras.initializers.VarianceScaling(mode='fan_avg')
-    layer = tf.layers.Dense(units=n, activation=activation,
+    layer = tf.layers.Dense(n, activation=activation,
                             kernel_initializer=activa, name='layer')
     return layer(prev)
 
@@ -33,8 +33,7 @@ def create_layer(prev, n, activation):
 def batch_norm(prev, n, activations, epsilon=1e-8):
     '''Function thar normalizes'''
     activa = tf.keras.initializers.VarianceScaling(mode='fan_avg')
-    layer = tf.layers.Dense(units=n, activation=None,
-                            kernel_initializer=activa, name='layer')
+    layer = tf.layers.Dense(units=n, kernel_initializer=activa)
     Z = layer(prev)
     mu, sigma_2 = tf.nn.moments(Z, axes=[0])
     gamma = tf.Variable(initial_value=tf.constant(1.0, shape=[n]),
@@ -48,7 +47,10 @@ def batch_norm(prev, n, activations, epsilon=1e-8):
         offset=beta,
         scale=gamma,
         variance_epsilon=epsilon)
-    return activations(Z_b_norm)
+    if activations is None:
+        return Z_b_norm
+    else:
+        return activations(Z_b_norm)
 
 
 def forward_prop(prev, layers, activations):
@@ -94,8 +96,8 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9,
     '''Function that trains NN'''
     nx = Data_train[0].shape[1]
     classes = Data_train[1].shape[1]
-    X_train, Y_train = Data_train
-    X_valid, Y_valid = Data_valid
+    (X_train, Y_train) = Data_train
+    (X_valid, Y_valid )= Data_valid
     x, y = create_placeholders(nx, classes)
     tf.add_to_collection('x', x)
     tf.add_to_collection('y', y)
