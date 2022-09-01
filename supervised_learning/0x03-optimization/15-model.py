@@ -21,12 +21,14 @@ def create_placeholders(nx, classes):
     y = tf.placeholder(tf.float32, shape=[None, classes], name='y')
     return x, y
 
+
 def create_layer(prev, n, activation):
     '''Function that creates a layer'''
     activa = tf.keras.initializers.VarianceScaling(mode='fan_avg')
     layer = tf.layers.Dense(n, activation=None,
                             kernel_initializer=activa, name='layer')
     return layer(prev)
+
 
 def batch_norm(prev, n, activations, epsilon):
     '''Function thar normalizes'''
@@ -46,6 +48,7 @@ def batch_norm(prev, n, activations, epsilon):
         scale=gamma,
         variance_epsilon=epsilon)
     return activations(Z_b_norm)
+
     
 def forward_prop(prev, layers, activations, epsilon):
     '''Function that makes forward propagation'''
@@ -58,10 +61,12 @@ def forward_prop(prev, layers, activations, epsilon):
                                     activations[i], epsilon)
     return estimation
 
+
 def create_Adam_op(loss, alpha, beta1, beta2, epsilon):
     '''Fucntion that calculates Adam'''
     adam = tf.train.AdamOptimizer(alpha, beta1, beta2, epsilon)
     return adam.minimize(loss)
+
 
 def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
     '''Function that calculates learning rate decay'''
@@ -69,20 +74,24 @@ def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
                                            decay_rate, staircase=True)
     return learning
 
+
 def calculate_accuracy(y, y_pred):
     '''Function that calculates accuracy'''
     yes_not = tf.equal(tf.argmax(y, 1), tf.argmax(y_pred, 1))
     acura = tf.reduce_mean(tf.cast(yes_not, tf.float32))
     return acura
 
+
 def calculate_loss(y, y_pred):
     '''Fuction that calculates loss'''
     loss = tf.losses.softmax_cross_entropy(y, y_pred)
     return loss
 
+
 def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9,
           beta2=0.999, epsilon=1e-8, decay_rate=1, batch_size=32, epochs=5,
           save_path='/tmp/model.ckpt'):
+
 
     nx = Data_train[0].shape[1]
     classes = Data_train[1].shape[1]
