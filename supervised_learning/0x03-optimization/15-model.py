@@ -121,25 +121,25 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9,
         else:
             mini = int(m / batch_size) + 1
             case = 1
-        for e in range(epochs + 1):
+        for epoch in range(epochs + 1):
             d_train = {x: X_train, y: Y_train}
             d_valid = {x: X_valid, y: Y_valid}
-            t_cost = session.run(loss, feed_dict=d_train)
-            t_accuracy = session.run(accuracy, feed_dict=d_train)
-            v_cost = session.run(loss, feed_dict=d_valid)
-            v_accuracy = session.run(accuracy, feed_dict=d_valid)
-            print('After {} epochs:'.format(e))
-            print('\tTraining Cost: {}'.format(t_cost))
-            print('\tTraining Accuracy: {}'.format(t_accuracy))
-            print('\tValidation Cost: {}'.format(v_cost))
-            print('\tValidation Accuracy: {}'.format(v_accuracy))
+            train_cost = session.run(loss, feed_dict=d_train)
+            train_accuracy = session.run(accuracy, feed_dict=d_train)
+            valid_cost = session.run(loss, feed_dict=d_valid)
+            valid_accuracy = session.run(accuracy, feed_dict=d_valid)
+            print('After {} epochs:'.format(epoch))
+            print('\tTraining Cost: {}'.format(train_cost))
+            print('\tTraining Accuracy: {}'.format(train_accuracy))
+            print('\tValidation Cost: {}'.format(valid_cost))
+            print('\tValidation Accuracy: {}'.format(valid_accuracy))
 
-            if e < epochs:
+            if epoch < epochs:
                 Xsh, Ysh = shuffle_data(X_train, Y_train)
-                for i in range(mini):
-                    a_0 = i * batch_size
-                    a_1 = (i + 1) * batch_size
-                    if case == 0 and i == mini:
+                for step_number in range(mini):
+                    a_0 = step_number * batch_size
+                    a_1 = (step_number + 1) * batch_size
+                    if case == 0 and step_number == mini:
                         x_m = Xsh[a_0::]
                         y_m = Ysh[a_0::]
                     else:
@@ -147,12 +147,12 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9,
                         y_m = Ysh[a_0:a_1]
                     d_mini = {x: x_m, y: y_m}
                     session.run(train_op, feed_dict=d_mini)
-                    if((i + 1) % 100 == 0) and (i != 0):
-                        s_cost = session.run(loss, feed_dict=d_mini)
-                        s_accuracy = session.run(accuracy, feed_dict=d_mini)
-                        print('\tStep {}:'.format(i + 1))
-                        print('\t\tCost: {}'.format(s_cost))
-                        print('\t\tAccuracy: {}'.format(s_accuracy))
+                    if((step_number + 1) % 100 == 0) and (step_number != 0):
+                        step_cost = session.run(loss, feed_dict=d_mini)
+                        step_accuracy = session.run(accuracy, feed_dict=d_mini)
+                        print('\tStep {}:'.format(step_number + 1))
+                        print('\t\tCost: {}'.format(step_cost))
+                        print('\t\tAccuracy: {}'.format(step_accuracy))
             session.run(tf.assign(global_step, global_step + 1))
             save_path = saver.save(session, save_path)
     return save_path
