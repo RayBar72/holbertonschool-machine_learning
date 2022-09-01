@@ -49,7 +49,7 @@ def batch_norm(prev, n, activations, epsilon):
         variance_epsilon=epsilon)
     return activations(Z_b_norm)
 
-    
+
 def forward_prop(prev, layers, activations, epsilon):
     '''Function that makes forward propagation'''
     estimation = batch_norm(prev, layers[0], activations[0], epsilon)
@@ -91,8 +91,7 @@ def calculate_loss(y, y_pred):
 def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9,
           beta2=0.999, epsilon=1e-8, decay_rate=1, batch_size=32, epochs=5,
           save_path='/tmp/model.ckpt'):
-
-
+    '''Function that trains NN'''
     nx = Data_train[0].shape[1]
     classes = Data_train[1].shape[1]
     X_train, Y_train = Data_train
