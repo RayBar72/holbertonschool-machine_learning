@@ -8,7 +8,6 @@ import numpy as np
 
 def sensitivity(confusion):
     '''
-    
 
     Parameters
     ----------
