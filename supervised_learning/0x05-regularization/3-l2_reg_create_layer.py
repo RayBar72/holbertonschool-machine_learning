@@ -8,7 +8,7 @@ import tensorflow.compat.v1 as tf
 
 def l2_reg_create_layer(prev, n, activation, lambtha):
     '''
-    
+
 
     Parameters
     ----------
@@ -18,7 +18,7 @@ def l2_reg_create_layer(prev, n, activation, lambtha):
     n : TYPE int
         DESCRIPTION. Number of nodes
     activation : TYPE tensor
-        DESCRIPTION. Type of activation to be used in the layer 
+        DESCRIPTION. Type of activation to be used in the layer
     lambtha : TYPE float
         DESCRIPTION. L2 regularization parameter
 
