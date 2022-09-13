@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+'''
+Modulus that trins a model using mini-batch gradien descent
+'''
+import tensorflow.keras as K
+
+
+def train_model(network, data, labels, batch_size, epochs,
+                validation_data=None, early_stopping=False, patience=0,
+                learning_rate_decay=False, alpha=0.1, decay_rate=1,
+                verbose=True, shuffle=False):
+    '''
+    Based on 4-train.py, update the function train_model
+    to also analyze validaiton data
+
+    Parameters
+    ----------
+    network : TYPE model
+        DESCRIPTION. Model to be train
+    data : TYPE numpy.ndarray
+        DESCRIPTION. data is a numpy.ndarray of shape (m, nx) containing
+        the input data
+    labels : TYPE numpy.ndarray
+        DESCRIPTION. (m, classes) containing the labels of data
+    batch_size : TYPE int
+        DESCRIPTION. Batch size used for mini-batch gradient descent
+    epochs : TYPE int
+        DESCRIPTION. Number of passes through data for mini-batch g.d.
+    validation_data : TYPE, optional
+        DESCRIPTION. Dato to validate the model.
+    early_stopping : TYPE boolean
+        DESCRIPTION. Indicates if early stopping should be used
+    patience : TYPE int
+        DESCRIPTION. is the patience used for early stopping
+    verbose : TYPE, optional
+        DESCRIPTION. The default is True.
+    shuffle : TYPE, optional
+        DESCRIPTION. The default is False.
+
+    Returns
+    -------
+    None.
+
+    '''
+    def decay(epoch):
+        '''
+        Function that calculates step decay
+        '''
+        return alpha / (1 + decay_rate * epoch)
+    callb = []
+    if validation_data and learning_rate_decay:
+        lr = K.callbacks.LearningRateScheduler(decay, verbose=1)
+        callb.append(lr)
+    if validation_data and early_stopping:
+        validation_data = validation_data
+        early = K.callbacks.EarlyStopping(monitor='val_loss',
+                                          patience=patience)
+        callb.append(early)
+    else:
+        validation_data = None
+    return network.fit(x=data,
+                       y=labels,
+                       batch_size=batch_size,
+                       epochs=epochs,
+                       verbose=verbose,
+                       validation_data=validation_data,
+                       shuffle=shuffle,
+                       callbacks=callb)
