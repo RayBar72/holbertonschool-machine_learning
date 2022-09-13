@@ -22,4 +22,4 @@ def one_hot(labels, classes=None):
     None. The last dimension must be number of classes
 
     '''
-    return K.utils.to_categorical(labels, classes, dtype='float32')
+    return K.utils.to_categorical(labels, num_classes=classes)
