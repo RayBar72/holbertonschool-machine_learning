@@ -13,8 +13,8 @@ def convolve_grayscale_same(images, kernel):
     '''
     m, h, w = images.shape
     kh, kw = kernel.shape
-    ph = int(np.ceil((kh - 1) / 2))
-    pw = int(np.ceil((kh - 1) / 2))
+    ph = int(kh / 2)
+    pw = int(kh / 2)
     padded_img = np.pad(images, ((0, 0), (ph, ph), (pw, pw)), 'constant')
 
     conv_dim = (m, h, w)
@@ -23,6 +23,5 @@ def convolve_grayscale_same(images, kernel):
     for i in range(conv_dim[1]):
         for j in range(conv_dim[2]):
             image_slice = padded_img[:, i:i + kh, j:j + kw]
-            conv[:, i, j] = np.tensordot(image_slice, kernel,
-                                         axes=([1, 2], [0, 1]))
+            conv[:, i, j] = np.tensordot(image_slice, kernel)
     return conv
