@@ -1,30 +1,26 @@
 #!/usr/bin/env python3
-'''
-Modulus that has a function that performs fwrd prop over a CNN
-'''
+
+import matplotlib.pyplot as plt
 import numpy as np
+pool_forward = __import__('1-pool_forward').pool_forward
 
+if __name__ == "__main__":
+    np.random.seed(0)
+    lib = np.load('../data/MNIST.npz')
+    X_train = lib['X_train']
+    m, h, w = X_train.shape
+    X_train_a = X_train.reshape((-1, h, w, 1))
+    X_train_b = 1 - X_train_a
+    X_train_c = np.concatenate((X_train_a, X_train_b), axis=3)
 
-def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
-    '''
-    Function that performs forward propagation over a convolutional
-    layer of a neural network
-    '''
-
-    m, h_prev, w_prev, _ = A_prev.shape
-    kh, kw, _, c_new = W.shape
-    c_new = b.shape[3]
-    sh, sw = stride
-
-    if padding == 'valid':
-        ph, pw = (0, 0)
-    else:
-        ph = int((sh * (h_prev - 1) - h_prev + kh) / 2)
-        pw = int((sw * (w_prev - 1) - w_prev + kw) / 2)
-
-    ch = int(((h_prev + 2 * ph - kh) / sh) + 1)
-    cw = int(((w_prev + 2 * pw - kw) / sw) + 1)
-    conv_dim =(m, ch, cw, c_new)
-
-    padded_img = np.pad(A_prev, ((0, 0), (ph, ph), (pw, pw), (0, 0)), 'constant')
-    conv = np.zeros(conv_dim)
+    print(X_train_c.shape)
+    plt.imshow(X_train_c[0, :, :, 0])
+    plt.show()
+    plt.imshow(X_train_c[0, :, :, 1])
+    plt.show()
+    A = pool_forward(X_train_c, (2, 2), stride=(2, 2))
+    print(A.shape)
+    plt.imshow(A[0, :, :, 0])
+    plt.show()
+    plt.imshow(A[0, :, :, 1])
+    plt.show()
