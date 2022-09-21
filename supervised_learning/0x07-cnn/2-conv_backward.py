@@ -12,15 +12,15 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     '''
 
     m, h_new, w_new, c_new = dZ.shape
-    _, h_prev, w_prev, c_prev = A_prev.shape
-    kh, kw, _, _ = W.shape
+    m, h_prev, w_prev, c_prev = A_prev.shape
+    kh, kw, c_prev, c_new = W.shape
     sh, sw = stride
 
     if padding == 'valid':
         ph, pw = (0, 0)
     else:
-        ph = int((sh * (h_prev - 1) - h_prev + kh) / 2)
-        pw = int((sw * (w_prev - 1) - w_prev + kw) / 2)
+        ph = int(np.ceil((sh * (h_prev - 1) - h_prev + kh) / 2))
+        pw = int(np.ceil((sw * (w_prev - 1) - w_prev + kw) / 2))
 
     A_prev = np.pad(A_prev,
                     ((0, 0), (ph, ph), (pw, pw), (0, 0)),
