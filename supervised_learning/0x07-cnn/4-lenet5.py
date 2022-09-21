@@ -11,7 +11,7 @@ def lenet5(x, y):
     Function that builds a modified version of the LeNet-5 architecture
     using tensorflow
     '''
-    init = tf.keras.initializers.VarianceScaling(scale=2.0, mode='fan_avg')
+    init = tf.keras.initializers.VarianceScaling(scale=2.0)
 
     C1 = tf.layers.Conv2D(filters=6,
                           kernel_size=5,
