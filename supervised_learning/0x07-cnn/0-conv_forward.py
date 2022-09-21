@@ -24,9 +24,10 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
 
     ch = int(((h_prev + 2 * ph - kh) / sh) + 1)
     cw = int(((w_prev + 2 * pw - kw) / sw) + 1)
-    conv_dim =(m, ch, cw, c_new)
+    conv_dim = (m, ch, cw, c_new)
 
-    padded_img = np.pad(A_prev, ((0, 0), (ph, ph), (pw, pw), (0, 0)), 'constant')
+    padded_img = np.pad(A_prev, ((0, 0), (ph, ph),
+                                 (pw, pw), (0, 0)), 'constant')
     conv = np.zeros(conv_dim)
 
     for i in range(conv_dim[1]):

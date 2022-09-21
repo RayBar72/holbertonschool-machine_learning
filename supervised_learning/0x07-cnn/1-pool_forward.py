@@ -14,7 +14,7 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
     m, h_prev, w_prev, c_prev = A_prev.shape
     kh, kw = kernel_shape
     sh, sw = stride
-    
+
     poolh = int((h_prev - kh) / sh) + 1
     poolw = int((w_prev - kw) / sw) + 1
 
