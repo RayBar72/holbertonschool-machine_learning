@@ -35,7 +35,7 @@ def pool_backward(dA, A_prev, kernel_shape, stride=(1, 1), mode='max'):
                                 c] += np.multiply(max_s, da)
                     elif mode == 'avg':
                         average = da / (kh * kw)
-                        x = np.ones(kernel_shape.shape) * average
+                        x = np.ones(kernel_shape) * average
                         dA_prev[img,
                                 y_s:y_e,
                                 x_s:x_e,
