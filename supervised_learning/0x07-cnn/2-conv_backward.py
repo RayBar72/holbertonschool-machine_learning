@@ -14,7 +14,7 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     m, h_new, w_new, c_new = dZ.shape
     _, h_prev, w_prev, c_prev = A_prev.shape
     kh, kw, _, _ = W.shape
-    sh, sw = (1, 1)
+    sh, sw = stride
 
     if padding == 'valid':
         ph, pw = (0, 0)
@@ -24,7 +24,7 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
 
     A_prev = np.pad(A_prev,
                     ((0, 0), (ph, ph), (pw, pw), (0, 0)),
-                    'constant')
+                    mode='constant')
 
     dA_prev = np.zeros_like(A_prev)
     dW = np.zeros_like(W)
