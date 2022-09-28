@@ -22,20 +22,22 @@ def inception_network():
                          kernel_size=(7, 7),
                          strides=2,
                          padding='same',
+                         kernel_initializer='he_normal',
                          activation='relu')(inputs)
     MP1 = K.layers.MaxPool2D(pool_size=(3, 3),
                              strides=2,
                              padding='same')(C1)
-    C2 = K.layers.Conv2D(64,
-                         kernel_size=(1, 1),
-                         strides=1,
-                         padding='same',
-                         activation='relu')(MP1)
+    # C2 = K.layers.Conv2D(64,
+    #                      kernel_size=(1, 1),
+    #                      strides=1,
+    #                      padding='same',
+    #                      activation='relu')(MP1)
     C3 = K.layers.Conv2D(192,
                          kernel_size=(3, 3),
                          strides=1,
                          padding='same',
-                         activation='relu')(C2)
+                         kernel_initializer='he_normal',
+                         activation='relu')(MP1)
     MP2 = K.layers.MaxPool2D(pool_size=(3, 3),
                              strides=2,
                              padding='same')(C3)
@@ -64,10 +66,10 @@ def inception_network():
     IN3B = inception_block(IN3A,
                            [384, 192, 384, 48, 128, 128])
     AP1 = K.layers.AveragePooling2D(pool_size=(7, 7),
-                                    strides=1,
-                                    padding='same')(IN3B)
+                                    strides=1)(IN3B)
     D1 = K.layers.Dropout(0.4)(AP1)
     SF1 = K.layers.Dense(1000,
+                         kernel_initializer='he_normal',
                          activation='softmax')(D1)
     model = K.Model(inputs=inputs, outputs=SF1)
     return model
