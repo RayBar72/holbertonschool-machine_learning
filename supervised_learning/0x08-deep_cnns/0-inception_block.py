@@ -52,14 +52,14 @@ def inception_block(A_prev, filters):
                            kernel_initializer='he_normal',
                            activation='relu')(C3)
 
-    P1 = K.layers.MaxPooling2D(pool_size=(3, 3),
-                               strides=(1, 1),
-                               padding='same')(A_prev)
+    P1 = K.layers.MaxPool2D(pool_size=(3, 3),
+                            strides=(1, 1),
+                            padding='same')(A_prev)
     PC12 = K.layers.Conv2D(FPP,
                            kernel_size=(1, 1),
                            padding='same',
                            kernel_initializer='he_normal',
                            activation='relu')(P1)
 
-    concha = K.layers.Concatenate([C1, CC22, CC32, PC12], axis=3)
+    concha = K.layers.concatenate([C1, CC22, CC32, PC12], axis=3)
     return concha
