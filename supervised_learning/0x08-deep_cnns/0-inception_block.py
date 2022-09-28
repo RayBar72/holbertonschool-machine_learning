@@ -24,15 +24,19 @@ def inception_block(A_prev, filters):
 
     '''
     F1, F3R, F3, F5R, F5, FPP = filters
-    # inputs = K.Input(A_prev.shape)
-    C1 = K.layers.Conv2D(F1, kernel_size=(1, 1), padding='same', activation='relu')(A_prev)
-    C2 = K.layers.Conv2D(F3R, kernel_size=(1, 1), padding='same', activation='relu')(A_prev)
-    C3 = K.layers.Conv2D(F5R, kernel_size=(1, 1), padding='same', activation='relu')(A_prev)
+    C1 = K.layers.Conv2D(F1, kernel_size=(1, 1), padding='same',
+                         activation='relu')(A_prev)
+    C2 = K.layers.Conv2D(F3R, kernel_size=(1, 1), padding='same',
+                         activation='relu')(A_prev)
+    C3 = K.layers.Conv2D(F5R, kernel_size=(1, 1), padding='same',
+                         activation='relu')(A_prev)
     P1 = K.layers.MaxPool2D(pool_size=(3, 3), strides=(1, 1),
                             padding='same')(A_prev)
-    CC22 = K.layers.Conv2D(F3, kernel_size=(3, 3), padding='same', activation='relu')(C2)
-    CC32 = K.layers.Conv2D(F5, kernel_size=(5, 5), padding='same', activation='relu')(C3)
-    PC12 = K.layers.Conv2D(FPP, kernel_size=(1, 1), padding='same', activation='relu')(P1)
+    CC22 = K.layers.Conv2D(F3, kernel_size=(3, 3), padding='same',
+                           activation='relu')(C2)
+    CC32 = K.layers.Conv2D(F5, kernel_size=(5, 5), padding='same',
+                           activation='relu')(C3)
+    PC12 = K.layers.Conv2D(FPP, kernel_size=(1, 1), padding='same',
+                           activation='relu')(P1)
     concha = K.layers.Concatenate(axis=3)([C1, CC22, CC32, PC12])
-    print(concha)
     return concha
