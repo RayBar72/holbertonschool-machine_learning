@@ -33,9 +33,9 @@ def densenet121(growth_rate=32, compression=1.0):
                         padding='same',
                         strides=2,
                         kernel_initializer='he_normal')(X)
-    X = K.layers.AveragePooling2D(pool_size=(3, 3),
-                                  strides=2,
-                                  padding='same')(X)
+    X = K.layers.MaxPool2D(pool_size=(3, 3),
+                           strides=2,
+                           padding='same')(X)
 
     dense_b = [6, 12, 24, 16]
     for i in range(4):
