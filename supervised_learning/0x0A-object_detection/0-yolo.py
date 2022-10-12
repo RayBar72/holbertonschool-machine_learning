@@ -8,7 +8,6 @@ import tensorflow.keras as K
 class Yolo():
     def __init__(self, model_path, classes_path, class_t, nms_t, anchors):
         self.model = K.models.load_model(model_path)
-        # class_names = []
         with open(classes_path, 'r') as f:
             class_names = f.read().split('\n')
         self.class_names = class_names
