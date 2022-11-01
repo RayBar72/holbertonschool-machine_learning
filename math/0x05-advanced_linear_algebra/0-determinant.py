@@ -5,12 +5,12 @@
 def determinant(matrix):
     '''Function that caculates the determianant of a matrix'''
     if type(matrix) is not list or len(matrix) == 0:
-        raise TypeError("matrix must be a list of lists")
+        raise TypeError('matrix must be a list of lists')
     if all([type(i) is list for i in matrix]) is False:
-        raise TypeError("matrix must be a list of lists")
+        raise TypeError('matrix must be a list of lists')
 
     if matrix[0] and len(matrix) != len(matrix[0]):
-        raise ValueError("matrix must be a square matrix")
+        raise ValueError('matrix must be a square matrix')
 
     if matrix == [[]]:
         return 1
