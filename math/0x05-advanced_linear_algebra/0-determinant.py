@@ -14,6 +14,10 @@ def determinant(matrix):
 
     if matrix == [[]]:
         return 1
+
+    if len(matrix) == 1:
+        return matrix[0][0]
+
     mat = matrix
 
     largo = len(mat)
