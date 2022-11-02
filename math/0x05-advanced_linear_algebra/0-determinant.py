@@ -54,4 +54,7 @@ def determinant(matrix):
     z = 1
     for j in resultados:
         z *= j
+    if z % 1 <= 0.000001:
+        z = round(z, 0)
+        z = int(z)
     return z
