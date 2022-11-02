@@ -3,6 +3,7 @@
 
 
 def smaller_matrix(original_matrix, row, column):
+    '''Function that makes a smaller matrix'''
     new_matrix = []
     for i in range(len(original_matrix)):
         if i == row:
