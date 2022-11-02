@@ -33,6 +33,9 @@ def determinant(matrix):
     if len(matrix) == 1:
         return matrix[0][0]
 
+    if all(len(matrix) == len(col) for col in matrix) is False:
+        raise ValueError('matrix must be a square matrix')
+
     num_rows = len(matrix)
 
     if len(matrix) == 2:

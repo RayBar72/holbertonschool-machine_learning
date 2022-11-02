@@ -1,0 +1,62 @@
+=========================
+0-determinant function
+=========================
+
+List of proffs for a function that calculates the
+determinant of a matrix
+
+Creating proff matrix
+    >>> mat0 = [[]]
+    >>> mat1 = [[5]]
+    >>> mat2 = [[1, 2], [3, 4]]
+    >>> mat3 = [[1, 1], [1, 1]]
+    >>> mat4 = [[5, 7, 9], [3, 1, 8], [6, 2, 4]]
+    >>> mat5 = []
+    >>> mat6 = [[1, 2, 3], [4, 5, 6]]
+    >>> mat7 = [[None, None], [None, None]]
+    >>> mat8 = [['uno', 'dos'], ['tres', 'cuatro']]
+    >>> mat9 = [[1, 3, 4], [5, 6, 7], [1, 2]]
+
+Importing the function:
+    >>> determinant = __import__('0-determinant').determinant
+
+Pruebas
+    >>> print(determinant(mat0))
+    1
+
+    >>> print(determinant(mat1))
+    5
+
+    >>> print(determinant(mat2))
+    -2
+
+    >>> print(determinant(mat3))
+    0
+
+    >>> print(determinant(mat4))
+    192
+
+    >>> print(determinant(mat5))
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a list of lists
+
+    >>> print(determinant(mat6))
+    Traceback (most recent call last):
+        ...
+    ValueError: matrix must be a square matrix
+
+    >>> print(determinant(mat7))
+    Traceback (most recent call last):
+        ...
+    TypeError: unsupported operand type(s) for *: 'NoneType' and 'NoneType'
+
+    >>> print(determinant(mat8))
+    Traceback (most recent call last):
+        ...
+    TypeError: can't multiply sequence by non-int of type 'str'
+
+    >>> print(determinant(mat9))
+    Traceback (most recent call last):
+        ...
+    ValueError: matrix must be a square matrix
