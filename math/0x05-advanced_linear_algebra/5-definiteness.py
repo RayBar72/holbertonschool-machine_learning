@@ -15,6 +15,9 @@ def definiteness(matrix):
     if h != w:
         return None
 
+    if not np.all(matrix.T == matrix):
+        return None
+
     if np.all(np.linalg.eigvals(matrix) > 0):
         return 'Positive definite'
     elif np.all(np.linalg.eigvals(matrix) >= 0):
