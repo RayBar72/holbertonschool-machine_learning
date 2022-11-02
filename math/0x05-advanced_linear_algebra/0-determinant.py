@@ -2,6 +2,20 @@
 '''Modulus that calculates determinant matrix'''
 
 
+def smaller_matrix(original_matrix, row, column):
+    new_matrix = []
+    for i in range(len(original_matrix)):
+        if i == row:
+            continue
+        row_mati = []
+        for j in range(len(original_matrix)):
+            if j == column:
+                continue
+            row_mati.append(original_matrix[i][j])
+        new_matrix.append(row_mati)
+    return new_matrix
+
+
 def determinant(matrix):
     '''Function that caculates the determianant of a matrix'''
     if type(matrix) is not list or len(matrix) == 0:
@@ -18,43 +32,18 @@ def determinant(matrix):
     if len(matrix) == 1:
         return matrix[0][0]
 
-    mat = matrix
+    num_rows = len(matrix)
 
-    largo = len(mat)
-    diagonal = []
-    abajo = [0]
-    derecha = [0]
+    if len(matrix) == 2:
+        simple_determinant = matrix[0][0] * matrix[1][1] \
+            - matrix[0][1] * matrix[1][0]
+        return simple_determinant
 
-    for i in range(largo):
-        for j in range(largo):
-            if i == j:
-                diagonal.append(mat[i][j])
-                try:
-                    abajo.append(mat[i + 1][j])
-                except Exception as e:
-                    pass
-                try:
-                    derecha.append(mat[i][j + 1])
-                except Exception as e:
-                    pass
-
-    # print(diagonal)
-    # print(abajo)
-    # print(derecha)
-    resultados = []
-    for i in range(largo):
-        try:
-            multi = abajo[i] / diagonal[i - 1]
-        except Exception as e:
-            multi = 0
-        x = multi * derecha[i]
-        y = diagonal[i] - x
-        resultados.append(y)
-    # print(resultados)
-    z = 1
-    for j in resultados:
-        z *= j
-    if z % 1 <= 0.000001:
-        z = round(z, 0)
-        z = int(z)
-    return z
+    else:
+        answer = 0
+        num_columns = num_rows
+        for j in range(num_columns):
+            cofactor = (-1) ** (0 + j) * matrix[0][j] \
+                * determinant(smaller_matrix(matrix, 0, j))
+            answer += cofactor
+        return answer
