@@ -14,6 +14,9 @@ def minor(matrix):
     if (matrix[0] and len(matrix) != len(matrix[0])) or matrix == [[]]:
         raise ValueError('matrix must be a non-empty square matrix')
 
+    if all(len(matrix) == len(colum) for colum in matrix) is False:
+        raise ValueError('matrix must be a non-empty square matrix')
+
     if len(matrix) == len(matrix[0]) == 1:
         return [[1]]
 
