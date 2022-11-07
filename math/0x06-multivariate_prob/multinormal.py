@@ -30,10 +30,22 @@ class MultiNormal():
         self.cov = np.matmul(X_m, X_m.T) / (n - 1)
 
     def pdf(self, x):
+        '''
+        Function that calculates probability density
+        of a multivarete normal
+        :param x: Specific point
+        :return: PDF value
+        '''
         if type(x) is not np.ndarray:
             raise TypeError('x must be a numpy.ndarray')
 
-        if len(x.shape) != 2 or x.shape[1] != 1:
+        if len(x.shape) != 2:
+            raise ValueError('x must have the'
+                             ' shape ({d}, 1)'.format(x.shape[0]))
+        if x.shape[1] != 1:
+            raise ValueError('x must have the'
+                             ' shape ({d}, 1)'.format(x.shape[0]))
+        if x.shape[0] != self.cov.shape[0]:
             raise ValueError('x must have the'
                              ' shape ({d}, 1)'.format(x.shape[0]))
 
