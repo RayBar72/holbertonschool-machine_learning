@@ -32,4 +32,3 @@ def correlation(C):
             z = C[i, j] / (x * y)
             retorno[i, j] = z
     return retorno
-
