@@ -40,14 +40,14 @@ class MultiNormal():
             raise TypeError('x must be a numpy.ndarray')
 
         if len(x.shape) != 2:
-            raise ValueError('x must have the'
-                             ' shape ({}, 1)'.format(x.shape[0]))
+            raise ValueError('x must have the shape ({}, 1)'.
+                             format(self.cov.shape[0]))
         if x.shape[1] != 1:
-            raise ValueError('x must have the'
-                             ' shape ({}, 1)'.format(x.shape[0]))
+            raise ValueError('x must have the shape ({}, 1)'.
+                             format(self.cov.shape[0]))
         if x.shape[0] != self.cov.shape[0]:
-            raise ValueError('x must have the'
-                             ' shape ({}, 1)'.format(x.shape[0]))
+            raise ValueError('x must have the shape ({}, 1)'.
+                             format(self.cov.shape[0]))
 
         x_m = self.mean
         sigma = self.cov
