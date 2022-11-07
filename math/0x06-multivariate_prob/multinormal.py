@@ -51,12 +51,16 @@ class MultiNormal():
 
         x_m = self.mean
         sigma = self.cov
-        dim = x.shape[0]
 
-        expo_1 = np.matmul(np.linalg.inv(sigma), x - x_m)
-        expo_2 = (- 1 / 2) * np.matmul((x - x_m).T, expo_1)
-        expo = np.sum(np.exp(expo_2))
-        deto = np.sum(np.linalg.det(sigma) ** (- 1 / 2))
-        pillo = np.sum((2 * np.pi) ** (- dim / 2))
+        d = x.shape[0]
+        det = np.linalg.det(self.cov)
+        inv = np.linalg.inv(self.cov)
+        X = x - x_m
 
-        return pillo * deto * expo
+        uno = 1 / np.sqrt(((2 * np.pi) ** d) * det)
+        dos = np.dot(-(X).T, inv)
+        tres = np.dot(dos, X / 2)
+        cua = np.exp(tres)
+        pdf = float(uno * cua)
+
+        return pdf
