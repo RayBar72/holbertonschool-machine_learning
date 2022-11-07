@@ -41,13 +41,13 @@ class MultiNormal():
 
         if len(x.shape) != 2:
             raise ValueError('x must have the'
-                             ' shape ({d}, 1)'.format(x.shape[0]))
+                             ' shape ({}, 1)'.format(x.shape[0]))
         if x.shape[1] != 1:
             raise ValueError('x must have the'
-                             ' shape ({d}, 1)'.format(x.shape[0]))
+                             ' shape ({}, 1)'.format(x.shape[0]))
         if x.shape[0] != self.cov.shape[0]:
             raise ValueError('x must have the'
-                             ' shape ({d}, 1)'.format(x.shape[0]))
+                             ' shape ({}, 1)'.format(x.shape[0]))
 
         x_m = self.mean
         sigma = self.cov
