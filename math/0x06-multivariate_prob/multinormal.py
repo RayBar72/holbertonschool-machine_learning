@@ -1,8 +1,20 @@
+#!/usr/bin/env python3
+'''
+Modulus that represents Multivariate Normal
+Distribution
+'''
 import numpy as np
 
 
 class MultiNormal():
+    '''
+    Class that represents multivariate normal
+    distribution
+    '''
     def __init__(self, data):
+        '''
+        Init function
+        '''
         if type(data) is not np.ndarray or len(data.shape) != 2:
             raise TypeError('data must be a 2D numpy.ndarray')
 
