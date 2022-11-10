@@ -21,7 +21,7 @@ def likelihood(x, n, P):
 
     fact = np.math.factorial(n) / (
         np.math.factorial(x) * np.math.factorial(n - x))
-    m_1 = P ** x
+    m_1 = np.power(P, x)
     m_2 = np.power((1 - P), (n - x))
 
     res = fact * m_1 * m_2
