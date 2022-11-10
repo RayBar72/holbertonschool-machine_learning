@@ -22,11 +22,6 @@ def posterior(x, n, p1, p2):
     if p2 <= p1:
         raise ValueError('p2 must be greater than p1')
 
-    P = (x - (p1 + p2)) / (n - (p1 + p2))
-    like_0 = np.math.factorial(n) / (np.math.factorial(x) *
-                                     np.math.factorial(n - x))
-    like = like_0 * (P ** x) * ((1 - P) ** (n - x))
-    Pr = special.beta(1, 1)
-    inter = like * Pr
-    margot = np.sum(inter)
-    return inter / margot
+    ini = special.btdtr(x + 1, n - x + 1, p1)
+    fin = special.btdtr(x + 1, n - x + 1, p2)
+    return fin - ini
