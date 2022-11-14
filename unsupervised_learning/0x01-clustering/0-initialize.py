@@ -10,10 +10,10 @@ def initialize(X, k):
     Function that initializes cluster centroids
     for K-means
     '''
-    if len(X.shape) != 2 or type(X) is not np.ndarray:
+    if type(k) is not int or k < 1:
         return None
 
-    if type(k) is not int or k <= 0:
+    if type(X) is not np.ndarray or len(X.shape) != 2:
         return None
 
     min = np.min(X, axis=0)
