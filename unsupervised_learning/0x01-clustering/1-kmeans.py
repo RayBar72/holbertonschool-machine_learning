@@ -25,7 +25,7 @@ def kmeans(X, k, iterations=1000):
 
     for i in range(iterations):
         C_c = np.copy(C)
-        distancias = np.linalg.norm(X - C[:,np.newaxis], axis=-1)
+        distancias = np.linalg.norm(X - C[:, np.newaxis], axis=-1)
         clss = distancias.argmin(axis=0)
 
         for j in range(k):
@@ -34,7 +34,7 @@ def kmeans(X, k, iterations=1000):
             else:
                 C[j] = X[clss == j].mean(axis=0)
 
-        distancias = np.linalg.norm(X - C[:,np.newaxis], axis=-1)
+        distancias = np.linalg.norm(X - C[:, np.newaxis], axis=-1)
         clss = distancias.argmin(axis=0)
 
         if (C == C_c).all():
