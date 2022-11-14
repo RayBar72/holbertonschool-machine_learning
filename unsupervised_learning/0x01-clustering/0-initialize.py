@@ -10,13 +10,13 @@ def initialize(X, k):
     Function that initializes cluster centroids
     for K-means
     '''
-    if len(X.shape) != 2 or not isinstance(X, np.ndarray):
+    if len(X.shape) != 2 or type(X) is not np.ndarray:
         return None
 
-    if not isinstance(k, int) or k <= 0:
+    if type(k) is not int or k <= 0:
         return None
 
-    min = np.min(X, axis= 0)
+    min = np.min(X, axis=0)
     max = np.max(X, axis=0)
 
     init = np.random.uniform(low=min, high=max, size=(k, X.shape[1]))
