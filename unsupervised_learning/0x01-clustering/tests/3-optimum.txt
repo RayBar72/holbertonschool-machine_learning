@@ -1,0 +1,58 @@
+___________________________
+Tests for 3-optimum.py
+___________________________
+
+Importing
+    >>> import numpy as np
+    >>> optimum_k = __import__('3-optimum').optimum_k
+
+
+Playing with X
+
+Definig X
+    >>> a = np.random.multivariate_normal([30, 40], [[16, 0], [0, 16]], size=50)
+    >>> b = np.random.multivariate_normal([10, 25], [[16, 0], [0, 16]], size=50)
+    >>> c = np.random.multivariate_normal([40, 20], [[16, 0], [0, 16]], size=50)
+    >>> d = np.random.multivariate_normal([60, 30], [[16, 0], [0, 16]], size=50)
+    >>> e = np.random.multivariate_normal([20, 70], [[16, 0], [0, 16]], size=50)
+    >>> X = np.concatenate((a, b, c, d, e), axis=0)
+    >>> np.random.shuffle(X)
+
+X None
+    >>> optimum_k(None, 1, 2)
+    (None, None)
+
+X list
+    >>> 
+    >>> optimum_k([1, 2, 3], 1, 2)
+    (None, None)
+
+X np array n, n, z
+    >>> optimum_k(np.ones(shape=(10, 4, 5)))
+    (None, None)
+
+
+Kmin
+
+Negative 0
+    >>> optimum_k(X, 0, 3)
+    (None, None)
+
+Float 1.5
+    >>> optimum_k(X, 1.5, 3)
+    (None, None)
+
+kmin > kmax
+    >>> optimum_k(X, 4, 3)
+    (None, None)
+
+kmin == kmax
+    >>> optimum_k(X, 3, 3)
+    (None, None)
+
+iterations
+    >>> optimum_k(X, 1, 3, 0)
+    (None, None)
+
+
+
