@@ -17,6 +17,9 @@ def variance(X, C):
     if type(C) is not np.ndarray or len(C.shape) != 2:
         return None
 
+    if X.shape[1] != C.shape[1]:
+        return None
+
     distancia = np.linalg.norm(X - C[:, np.newaxis], axis=-1)
     min_distancia = np.min(distancia, axis=0)
     var = np.sum(min_distancia ** 2)
