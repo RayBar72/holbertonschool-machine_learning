@@ -15,6 +15,6 @@ def kmeans(X, k):
     if type(k) is not int or k < 1:
         return None, None
 
-    kmeans = sklearn.KMeans(k, random_state=0).fit(X)
+    kmeans = sklearn.KMeans(k).fit(X)
 
     return kmeans.cluster_centers_, kmeans.labels_
