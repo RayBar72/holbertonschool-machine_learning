@@ -17,6 +17,9 @@ def maximization(X, g):
     if type(g) is not np.ndarray or len(g.shape) != 2:
         return None, None, None
 
+    if X.shape[0] != g.shape[1]:
+        return None, None, None
+
     k, n = g.shape
     d = X.shape[1]
 
