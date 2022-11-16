@@ -3,7 +3,7 @@
 Modulus that performs K-means in a dataset
 '''
 import numpy as np
-import sklearn.cluster as cl
+import sklearn.cluster
 
 
 def kmeans(X, k):
@@ -16,6 +16,6 @@ def kmeans(X, k):
     if type(k) is not int or k < 1:
         return None, None
 
-    kmeans = cl.KMeans(k, random_state=0).fit(X)
+    kmeans = sklearn.KMeans(k, random_state=0).fit(X)
 
     return kmeans.cluster_centers_, kmeans.labels_
