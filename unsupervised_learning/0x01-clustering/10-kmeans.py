@@ -9,6 +9,6 @@ def kmeans(X, k):
     '''
     Function that performs K-means in a dataset
     '''
-    kmeans = sklearn.KMeans(k).fit(X)
+    kmeans = sklearn.cluster.KMeans(k).fit(X)
 
     return kmeans.cluster_centers_, kmeans.labels_
