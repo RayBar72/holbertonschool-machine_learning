@@ -20,6 +20,12 @@ def maximization(X, g):
     k, n = g.shape
     d = X.shape[1]
 
+    x = np.sum(g, axis=0)
+    x = np.sum(x)
+
+    if x != n:
+        return None, None, None
+
     sum_g = np.sum(g, axis=1)
     pi = (1 / n) * sum_g
     m = np.zeros(shape=(k, d))
