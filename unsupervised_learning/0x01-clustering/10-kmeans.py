@@ -2,7 +2,6 @@
 '''
 Modulus that performs K-means in a dataset
 '''
-import numpy as np
 import sklearn.cluster
 
 
