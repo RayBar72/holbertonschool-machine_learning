@@ -37,8 +37,9 @@ def expectation_maximization(X, k, iterations=1000, tol=1e-5, verbose=False):
             print('Log Likelihood after {} iterations: {}'.format(
                 i, round(l1, 5)))
         if abs(l0 - l1) <= tol:
-            print('Log Likelihood after {} iterations: {}'.format(
-                i, round(l1, 5)))
+            if verbose is True:
+                print('Log Likelihood after {} iterations: {}'.format(
+                    i, round(l1, 5)))
             return pi, m, S, g, l1
         pi, m, S = maximization(X, g)
         l0 = l1
