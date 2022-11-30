@@ -24,7 +24,8 @@ class GaussianProcess:
         '''
         Function that calculates the cov kernel mat
         '''
-        cuadra = np.sum(X1 ** 2, 1).reshape(-1, 1) + np.sum(X2 ** 2, 1) - 2* np.matmul(X1, X2.T)
+        cuadra = np.sum(X1 ** 2, 1).reshape(-1, 1) +\
+            np.sum(X2 ** 2, 1) - 2 * np.matmul(X1, X2.T)
         expo = - (1 / (2 * (self.l ** 2))) * cuadra
         kali = (self.sigma_f ** 2) * np.exp(expo)
         return kali
