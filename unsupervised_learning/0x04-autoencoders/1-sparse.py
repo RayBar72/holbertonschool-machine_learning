@@ -21,12 +21,14 @@ def autoencoder(input_dims, hidden_layers, latent_dims, lambtha):
     x = inputs2
     for l in reversed(hidden_layers):
         x = keras.layers.Dense(l, 'relu', kernel_regularizer=l1)(x)
-    outputs2 = keras.layers.Dense(input_dims, 'sigmoid', kernel_regularizer=l1)(x)
+    outputs2 = keras.layers.Dense(input_dims,
+                                  'sigmoid',
+                                  kernel_regularizer=l1)(x)
     decoder = keras.Model(inputs2, outputs2)
 
     auto = keras.Model(inputs=inputs, outputs=decoder(encoder(inputs)))
 
     auto.compile(loss='binary_crossentropy',
-                  optimizer='adam')
+                 optimizer='adam')
 
     return encoder, decoder, auto
