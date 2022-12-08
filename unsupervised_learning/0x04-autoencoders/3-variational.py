@@ -26,8 +26,9 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
         epsilon = keras.backend.random_normal(shape=(batch, dim))
         return z_m + keras.backend.exp(z_stand_des / 2) * epsilon
 
-    z = keras.layers.Lambda(sampling, output_shape=(latent_dims,))([z_mean,
-                                                                    z_log_sigma])
+    z = keras.layers.Lambda(sampling,
+                            output_shape=(latent_dims,))([z_mean,
+                                                          z_log_sigma])
 
     encoder = keras.Model(inputs=inputs0, outputs=[z, z_mean, z_log_sigma])
 
