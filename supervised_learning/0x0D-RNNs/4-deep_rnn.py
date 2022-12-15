@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Modulus that makes FP to a deep RNN"""
-
 import numpy as np
 
 
@@ -18,12 +17,12 @@ def deep_rnn(rnn_cells, X, h_0):
     H[0, :, :, :] = h_0
 
     for s in time_step:
-        for l in range(layers):
-            if l == 0:
-                h_next, y_pred = rnn_cells[l].forward(H[s, l], X[s])
+        for la in range(layers):
+            if la == 0:
+                h_next, y_pred = rnn_cells[la].forward(H[s, la], X[s])
             else:
-                h_next, y_pred = rnn_cells[l].forward(H[s, l], h_next)
-            H[s+1, l, :, :] = h_next
+                h_next, y_pred = rnn_cells[la].forward(H[s, la], h_next)
+            H[s+1, la, :, :] = h_next
         Y.append(y_pred)
     Y = np.array(Y)
     return H, Y
