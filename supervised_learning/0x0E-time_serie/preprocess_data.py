@@ -12,7 +12,7 @@ def cleans(cfile):
     """Function that cleans data
 
     Args:
-        cfile (str): 
+        cfile (str):
     """
     with open(cfile, 'r') as f:
         df = pd.read_csv(f, delimiter=',')
@@ -25,12 +25,12 @@ def cleans(cfile):
     # Sampling by hours
     df = df.set_index('Date')
     df = df.resample('H').agg({'Open': 'mean',
-                            'High': 'mean',
-                            "Low": 'mean',
-                            'Close': 'mean',
-                            'Volume_(BTC)': 'sum',
-                            'Volume_(Currency)': 'sum',
-                            'Weighted_Price': 'mean'})
+                               'High': 'mean',
+                               'Low': 'mean',
+                               'Close': 'mean',
+                               'Volume_(BTC)': 'sum',
+                               'Volume_(Currency)': 'sum',
+                               'Weighted_Price': 'mean'})
     df.reset_index(inplace=True)
     # Dropping not relevant vars
     df.pop('Open')
@@ -42,6 +42,7 @@ def cleans(cfile):
     df = df.dropna()
     print(df.head())
     return df
+
 
 def train_val_test(df):
     """Function that splits sets and standarize they
