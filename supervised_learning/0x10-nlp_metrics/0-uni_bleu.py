@@ -25,7 +25,7 @@ def dict_vecto(palabras, ngram_range=1):
             for j in range(ngram_range):
                 x += palabras[i + j]
                 if j != ngram_range - 1:
-                    x+= ' '
+                    x += ' '
             posibles.append(x)
         except Exception as e:
             pass
