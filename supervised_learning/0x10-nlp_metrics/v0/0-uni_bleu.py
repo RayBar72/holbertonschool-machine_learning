@@ -3,35 +3,27 @@
 Modulus that calculates unigram BLEU score for a sentence
 """
 import numpy as np
+# from sklearn.feature_extraction.text import CountVectorizer
 
 
-def dict_vecto(palabras, ngram_range=1):
+def dict_vecto(palabras, token_pattern='(?u)\\b\\w+\\b', ngram_range=(1, 1)):
     """_summary_
+
     Args:
         palabras (list): Function that creates a dictionary
-        ngram_range (int, optional): ngram for tokens. Defaults to 1.
+        token_pattern (str, optional): Regrex for tokenization. Defaults to '(?u)\b\w+\b'.
+        ngram_range (tuple, optional): ngram for tokens. Defaults to (1, 1).
 
     Returns:
         dict: Dictionary with the words and the number of times they appear
     """
-    ngram_range = 1
-
-    largo = len(palabras)
-
-    posibles = []
-    x = ""
-    for i in range(0, largo):
-        try:
-            for j in range(ngram_range):
-                x += palabras[i + j]
-                if j != ngram_range - 1:
-                    x+= ' '
-            posibles.append(x)
-        except Exception as e:
-            pass
-        x = ""
-    dicc = {x: posibles.count(x) for x in posibles}
-    return dicc
+    vectorizer = CountVectorizer(token_pattern='(?u)\\b\\w+\\b',
+                                 ngram_range=(1, 1))
+    x = vectorizer.fit_transform(palabras)
+    features = vectorizer.get_feature_names()
+    embeddings = x.toarray().sum(axis=0)
+    diccionario = dict(zip(features, embeddings))
+    return diccionario
 
 
 def references_dict(references, Sentence):
