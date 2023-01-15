@@ -3,7 +3,7 @@
 Modulus that calculates unigram BLEU score for a sentence
 """
 import numpy as np
-from sklearn.feature_extraction.text import CountVectorizer
+# from sklearn.feature_extraction.text import CountVectorizer
 
 
 def dict_vecto(palabras, token_pattern='(?u)\\b\\w+\\b', ngram_range=(1, 1)):
