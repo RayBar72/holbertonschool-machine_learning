@@ -29,7 +29,6 @@ def dict_vecto(palabras, ngram_range):
             pass
         x = ""
     dicc = {x: posibles.count(x) for x in posibles}
-    print(dicc)
     return dicc
 
 
@@ -70,9 +69,6 @@ def ngram_bleu(references, sentence, n):
     """Function that calculates the unigram BLEU score for a sentence"""
     Sentence = dict_vecto(sentence, n)
     References = references_dict(references, Sentence, n)
-
-    print(Sentence)
-    print(References)
 
     denominador = sum(list(Sentence.values()))
     numerador = sum(list(References.values()))
