@@ -82,6 +82,10 @@ def ngram_bleu(references, sentence, n):
 
 
 def cumulative_bleu(references, sentence, n):
+    """
+    Fuction that calculates the cumulative n-gram BLEU
+    score for a sentence
+    """
     x = []
 
     for i in range(1, n + 1):
