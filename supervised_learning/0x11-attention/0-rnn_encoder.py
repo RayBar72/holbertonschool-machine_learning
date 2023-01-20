@@ -8,7 +8,8 @@ import tensorflow as tf
 
 class RNNEncoder(tf.keras.layers.Layer):
     """
-    class that inherits from tensorflow.keras.layers.Layer to encode for machine translation
+    class that inherits from tensorflow.keras.layers.Layer
+    to encode for machine translation
     """
     def __init__(self, vocab, embedding, units, batch):
         """
@@ -25,7 +26,8 @@ class RNNEncoder(tf.keras.layers.Layer):
 
     def initialize_hidden_state(self):
         """
-        Public instance method that initializes the hidden states for the RNN cell to a tensor of zeros
+        Public instance method that initializes the hidden states
+        for the RNN cell to a tensor of zeros
         """
         initial = tf.keras.initializers.Zeros()
         return initial(shape=(self.batch, self.units))
