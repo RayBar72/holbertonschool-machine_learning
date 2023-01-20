@@ -2,7 +2,6 @@
 """
 Modulus that enconde for machine translation
 """
-import numpy as np
 import tensorflow as tf
 
 
