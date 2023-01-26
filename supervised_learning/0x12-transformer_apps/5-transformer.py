@@ -3,8 +3,7 @@
 Modulus for the class Transformer
 """
 import tensorflow as tf
-Encoder = __import__('9-transformer_encoder').Encoder
-Decoder = __import__('10-transformer_decoder').Decoder
+import numpy as np
 
 
 def positional_encoding(max_seq_len, dm):
@@ -27,6 +26,7 @@ def positional_encoding(max_seq_len, dm):
 
     return positional
 
+
 def sdp_attention(Q, K, V, mask=None):
     """
     Function that calculates the scaled dot product attention
@@ -43,6 +43,7 @@ def sdp_attention(Q, K, V, mask=None):
     output = tf.matmul(weights, V)
 
     return output, weights
+
 
 class MultiHeadAttention(tf.keras.layers.Layer):
     """
@@ -86,6 +87,7 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         output = self.linear(concat_attention)
         return output, weights
 
+
 class EncoderBlock(tf.keras.layers.Layer):
     """
     Class EncoderBlock
@@ -116,6 +118,7 @@ class EncoderBlock(tf.keras.layers.Layer):
         ffn_out = self.dropout2(ffn_out, training=training)
         output = self.layernorm2(out1 + ffn_out)
         return output
+
 
 class DecoderBlock(tf.keras.layers.Layer):
     """
@@ -155,6 +158,7 @@ class DecoderBlock(tf.keras.layers.Layer):
         out3 = self.layernorm3(out2 + ffn_out)
         return out3
 
+
 class Encoder(tf.keras.layers.Layer):
     """
     Class to create the encoder for a transformer
@@ -185,6 +189,7 @@ class Encoder(tf.keras.layers.Layer):
         for i in range(self.N):
             x = self.blocks[i](x, training, mask)
         return x
+
 
 class Decoder(tf.keras.layers.Layer):
     """
