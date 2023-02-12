@@ -2,7 +2,13 @@
 
 <img src="https://github.com/RayBar72/holbertonschool-machine_learning/blob/master/image.png" width="1000" height="450">
 
-Projects for Holberton School on Machine Learning 
+Projects for Holberton School on Machine Learning. The main topics are:
+- Mathematics for Machine Learning
+- Supervised Learning
+- Unsupervised Learning
+- Reinforcement Learning
+
+The projects are part of the curricula of Holberton School for the Specialization in Machine Learning
 
 ## Mathematics:
 
