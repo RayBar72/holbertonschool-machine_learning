@@ -1,21 +1,29 @@
-# 0x07. Bayesian Probability
+# 0x07. Bayesian Probability #
 
-## 0. Likelihood
+<img src="https://github.com/RayBar72/holbertonschool-machine_learning/blob/master/image.png" width="1000" height="450">
 
-Write a function def likelihood(x, n, P): that calculates the likelihood
+## Learning Objectives ##
 
-## 1. Intersection
+- What is Bayesian Probability?
+- What is Bayes’ rule and how do you use it?
+- What is a base rate?
+- What is a prior?
+- What is a posterior?
+- What is a likelihood?
 
-Based on 0-likelihood.py, write a function def intersection(x, n, P, Pr): that calculates the intersection
+## Content Table ##
 
-## 2. Marginal Probability
+| Task | Description | File |
+| ----------- | ----------- | ----------- |
+| 0. Likelihood | You are conducting a study on a revolutionary cancer drug and are looking to find the probability that a patient who takes this drug will develop severe side effects. During your trials, n patients take the drug and x patients develop severe side effects. You can assume that x follows a binomial distribution. | 0-likelihood.py |
+| 1. Intersection | Based on 0-likelihood.py, write a function def intersection(x, n, P, Pr): that calculates the intersection of obtaining this data with the various hypothetical probabilities | 1-intersection.py |
+| 2. Marginal Probability | Based on 1-intersection.py, write a function def marginal(x, n, P, Pr): that calculates the marginal probability of obtaining the data | 2-marginal.py |
+| 3. Posterior | Based on 2-marginal.py, write a function def posterior(x, n, P, Pr): that calculates the posterior probability for the various hypothetical probabilities of developing severe side effects given the data | 3-posterior.py  |
 
-Based on 1-intersection.py, write a function def marginal(x, n, P, Pr): that calculates the marginal probability
+## Authors: ##
 
-## 3. Posterior
+**Solution by:** Raymundo Barrera Flores. [rbarreraf72@gmail.com](rbarreraf72@gmail.com)
+[<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>](https://www.linkedin.com/in/raymundo-barrera-flores-a13022222/)
 
-Based on 2-marginal.py, write a function def posterior(x, n, P, Pr): that calculates the posterior probability
 
-## 4. Continuous Posterior
-
-Based on 3-posterior.py, write a function def posterior(x, n, p1, p2): that calculates the posterior probability that the probability
+**Project Required by**: HolbertonSchool
