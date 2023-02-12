@@ -25,42 +25,24 @@
 
 | Task | Description | File |
 | ----------- | ----------- | ----------- |
-| 0. Slice Me Up | Score: 100.00% (Checks completed: 100.00%)
- | 0-slice_me_up.py |
-| 1. Trim Me Down | Score: 100.00% (Checks completed: 100.00%)
- | 1-trim_me_down.py |
-| 2. Size Me Please | Score: 100.00% (Checks completed: 100.00%)
- | 2-size_me_please.py |
-| 3. Flip Me Over | Score: 100.00% (Checks completed: 100.00%)
- | 3-flip_me_over.py |
-| 4. Line Up | Score: 100.00% (Checks completed: 100.00%)
- | 4-line_up.py |
-| 5. Across The Planes | Score: 100.00% (Checks completed: 100.00%)
- | 5-across_the_planes.py |
-| 6. Howdy Partner | Score: 100.00% (Checks completed: 100.00%)
- | 6-howdy_partner.py |
-| 7. Gettin’ Cozy | Score: 100.00% (Checks completed: 100.00%)
- | 7-gettin_cozy.py |
-| 8. Ridin’ Bareback | Score: 100.00% (Checks completed: 100.00%)
- | 8-ridin_bareback.py |
-| 9. Let The Butcher Slice It | Score: 100.00% (Checks completed: 100.00%)
- | 9-let_the_butcher_slice_it.py |
-| 10. I’ll Use My Scale | Score: 100.00% (Checks completed: 100.00%)
- | 10-ill_use_my_scale.py |
-| 11. The Western Exchange | Score: 100.00% (Checks completed: 100.00%)
- | 11-the_western_exchange.py |
-| 12. Bracing The Elements | Score: 100.00% (Checks completed: 100.00%)
- | 12-bracin_the_elements.py |
-| 13. Cat's Got Your Tongue | Score: 100.00% (Checks completed: 100.00%)
- | 13-cats_got_your_tongue.py |
-| 14. Saddle Up | Score: 100.00% (Checks completed: 100.00%)
- | 14-saddle_up.py |
-| 15. Slice Like A Ninja | Score: 100.00% (Checks completed: 100.00%)
- | 100-slice_like_a_ninja.py |
-| 16. The Whole Barn | Score: 100.00% (Checks completed: 100.00%)
- | 101-the_whole_barn.py |
-| 17. Squashed Like Sardines | Score: 80.00% (Checks completed: 80.00%)
- | 102-squashed_like_sardines.py |
+| 0. Slice Me Up | Complete the following source code (found below) | 0-slice_me_up.py |
+| 1. Trim Me Down | Complete the following source code (found below) | 1-trim_me_down.py |
+| 2. Size Me Please | Write a function def matrix_shape(matrix): that calculates the shape of a matrix | 2-size_me_please.py |
+| 3. Flip Me Over | Write a function def matrix_transpose(matrix): that returns the transpose of a 2D matrix, matrix | 3-flip_me_over.py |
+| 4. Line Up | Write a function def add_arrays(arr1, arr2): that adds two arrays element-wise | 4-line_up.py |
+| 5. Across The Planes | Write a function def add_matrices2D(mat1, mat2): that adds two matrices element-wise | 5-across_the_planes.py |
+| 6. Howdy Partner | Write a function def cat_arrays(arr1, arr2): that concatenates two arrays | 6-howdy_partner.py |
+| 7. Gettin’ Cozy | Write a function def cat_matrices2D(mat1, mat2, axis=0): that concatenates two matrices along a specific axis | 7-gettin_cozy.py |
+| 8. Ridin’ Bareback | Write a function def mat_mul(mat1, mat2): that performs matrix multiplication | 8-ridin_bareback.py |
+| 9. Let The Butcher Slice It | Complete the following source code (found below) | 9-let_the_butcher_slice_it.py |
+| 10. I’ll Use My Scale | Write a function def np_shape(matrix): that calculates the shape of a numpy.ndarray | 10-ill_use_my_scale.py |
+| 11. The Western Exchange | Write a function def np_transpose(matrix): that transposes matrix | 11-the_western_exchange.py |
+| 12. Bracing The Elements | Write a function def np_elementwise(mat1, mat2): that performs element-wise addition, subtraction, multiplication, and division | 12-bracin_the_elements.py |
+| 13. Cat's Got Your Tongue | Write a function def np_cat(mat1, mat2, axis=0) that concatenates two matrices along a specific axis | 13-cats_got_your_tongue.py |
+| 14. Saddle Up | Write a function def np_matmul(mat1, mat2): that performs matrix multiplication | 14-saddle_up.py |
+| 15. Slice Like A Ninja | Write a function def np_slice(matrix, axes={}): that slices a matrix along specific axes | 100-slice_like_a_ninja.py |
+| 16. The Whole Barn | Write a function def add_matrices(mat1, mat2): that adds two matrices | 101-the_whole_barn.py |
+| 17. Squashed Like Sardines | Write a function def cat_matrices(mat1, mat2, axis=0): that concatenates two matrices along a specific axis | 102-squashed_like_sardines.py |
 
 ## Authors: ##
 
