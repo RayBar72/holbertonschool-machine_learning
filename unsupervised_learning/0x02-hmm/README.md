@@ -33,8 +33,7 @@
 | 0. Markov Chain | Write the function def markov_chain(P, s, t=1): that determines the probability of a markov chain being in a particular state after a specified number of iterations | 0-markov_chain.py |
 | 1. Regular Chains | Write the function def regular(P): that determines the steady state probabilities of a regular markov chain | 1-regular.py |
 | 2. Absorbing Chains | Write the function def absorbing(P): that determines if a markov chain is absorbing | 2-absorbing.py |
-| 3. The Forward Algorithm | 
- | 3-forward.py |
+| 3. The Forward Algorithm | 3-forward.py |
 | 4. The Viretbi Algorithm | Write the function def viterbi(Observation, Emission, Transition, Initial): that calculates the most likely sequence of hidden states for a hidden markov model | 4-viterbi.py |
 | 5. The Backward Algorithm | Write the function def backward(Observation, Emission, Transition, Initial): that performs the backward algorithm for a hidden markov model | 5-backward.py |
 | 6. The Baum-Welch Algorithm | Write the function def baum_welch(Observations, Transition, Emission, Initial, iterations=1000): that performs the Baum-Welch algorithm for a hidden markov model | 6-baum_welch.py |
