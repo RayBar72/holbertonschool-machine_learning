@@ -13,16 +13,13 @@ AtariProcessor = __import__('train').AtariProcessor
 def main():
     env = gym.make('BreakoutDeterministic-v4')
     env.reset()
-    num_actions = env.action_space.n
-    window = 4
 
-    model = create_q_model(num_actions, window)
-    memory = SequentialMemory(limit=1000000, window_length=window)
-    processor = AtariProcessor()
+    model = create_q_model()
+    memory = SequentialMemory(limit=1000000, window_length=4)
 
     dqn = DQNAgent(model=model,
-                   nb_actions=num_actions,
-                   processor=processor,
+                   nb_actions=4,
+                   processor=AtariProcessor(),
                    memory=memory)
 
     dqn.compile(keras.optimizers.Adam(lr=.00025), metrics=['mae'])

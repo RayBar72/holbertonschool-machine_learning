@@ -9,6 +9,7 @@ import keras
 from rl.processors import Processor
 from PIL import Image
 import numpy as np
+from rl.callbacks import ModelIntervalCheckpoint, FileLogger
 
 
 def create_q_model(actions=4, window=4):
@@ -54,6 +55,8 @@ def main():
     """ Main function """
     env = gym.make('BreakoutDeterministic-v4')
     env.reset()
+    model = create_q_model()
+    model.summary()
     policy = LinearAnnealedPolicy(EpsGreedyQPolicy(),
                                 attr='eps',
                                 value_max=1.,
@@ -61,7 +64,7 @@ def main():
                                 value_test=.05,
                                 nb_steps=1000000)
     memory = SequentialMemory(limit=1000000, window_length=4)
-    agent = DQNAgent(model=create_q_model(),
+    agent = DQNAgent(model=model,
                     nb_actions=4,
                     policy=policy,
                     memory=memory,
@@ -73,12 +76,11 @@ def main():
                     delta_clip=1.)
     agent.compile(keras.optimizers.Adam(lr=.00025), metrics=['mae'])
     agent.fit(env,
-            nb_steps=50000,
-            log_interval=10000,
-            visualize=False,
-            verbose=2)
+              nb_steps=50000,
+              log_interval=10000,
+              visualize=False,
+              verbose=2)
     agent.save_weights('policy.h5', overwrite=True)
-    env.close()
 
 
 if __name__ == '__main__':
