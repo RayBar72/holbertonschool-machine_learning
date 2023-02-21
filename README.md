@@ -48,11 +48,6 @@ The projects are part of the curricula of Holberton School for the Specializatio
 - 0x03. Hyperparameter Tuning
 - 0x04. Autoencoders
 
-## Reinforcement Learning
-
-- 0x00-q_learning
-- 0x01-deep_q_learning
-
 ## Authors: ##
 
 **Solution by:** Raymundo Barrera Flores. [rbarreraf72@gmail.com](rbarreraf72@gmail.com)[<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>](https://www.linkedin.com/in/raymundo-barrera-flores-a13022222/
