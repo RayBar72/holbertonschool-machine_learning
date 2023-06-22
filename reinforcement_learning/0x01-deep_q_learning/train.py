@@ -31,7 +31,6 @@ class AtariProcessor(Processor):
 
 def create_q_model(actions=4, window=4):
     """Create the model for the agent"""
-    num_actions = 4
 
     inputs = layers.Input(shape=(window, 84, 84))
 
@@ -66,7 +65,7 @@ def main():
         value_max=1.,
         value_min=.1,
         value_test=.05,
-        nb_steps=100000
+        nb_steps=40000
     )
 
     memory = SequentialMemory(
@@ -89,7 +88,7 @@ def main():
 
     agent.fit(
         env,
-        nb_steps=100000,
+        nb_steps=40000,
         log_interval=1000,
         visualize=False,
         verbose=2
