@@ -9,9 +9,9 @@
 
 | Task | Description | File |
 | ----------- | ----------- | ----------- |
-| 0. Monte Carlo | 0-monte_carlo.py |
-| 1. TD(λ) | 1-td_lambtha.py |
-| 2. SARSA(λ) | 2-sarsa_lambtha.py |
+| 0. Monte Carlo | Function that performs the Monte Carlo algorithm | 0-monte_carlo.py |
+| 1. TD(λ) | Function that performs the TD(λ) algorithm | 1-td_lambtha.py |
+| 2. SARSA(λ) | Function that performs SARSA(λ) | 2-sarsa_lambtha.py |
 
 ## Authors: ##
 
