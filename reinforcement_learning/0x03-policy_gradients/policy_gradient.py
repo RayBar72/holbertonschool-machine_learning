@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-train.py
+policy_gradient.py
 """
 import numpy as np
 
