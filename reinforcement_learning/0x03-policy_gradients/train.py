@@ -3,7 +3,7 @@
 train.py
 """
 import numpy as np
-# policy_gradient = __import__('policy_gradient').policy_gradient
+policy_gradient = __import__('policy_gradient').policy_gradient
 
 
 def train(env, nb_episodes, alpha=0.001, gamma=0.9, show_result=False):
@@ -38,7 +38,9 @@ def train(env, nb_episodes, alpha=0.001, gamma=0.9, show_result=False):
             if done:
                 break
         episode_rewards.append(score)
-        print("Episode: " + str(episode) + " Score: " + str(score), end="\r", flush=False)
+        print("Episode: " + str(episode) + " Score: " + str(score),
+              end="\r", flush=False)
         for i in range(T):
-            weight += alpha * grads[i] * sum([r * gamma ** r for t, r in enumerate(rewards[i:])])
+            weight += alpha * grads[i] * sum([r * gamma ** r for t, r
+                                              in enumerate(rewards[i:])])
     return episode_rewards
