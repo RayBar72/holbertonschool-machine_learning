@@ -16,7 +16,7 @@ def availableShips(passengerCount):
         list: ships avaiable, if not empty list
     """
     resultados = []
-    url = 'https://swapi-api.alx-tools.com/api/starships/'
+    url = 'https://swapi-api.hbtn.io/api/starships/'
     while url:
         resp = requests.get(url)
         resp_dict = resp.json()
@@ -25,7 +25,7 @@ def availableShips(passengerCount):
             try:
                 passa = int(record['passengers'])
             except Exception as e:
-                passa = float('inf')
+                passa = float('-inf')
             if passa >= passengerCount:
                 resultados.append(record['name'])
         url = resp_dict['next']
