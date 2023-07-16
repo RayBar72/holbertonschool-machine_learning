@@ -16,7 +16,7 @@ def availableShips(passengerCount):
         list: ships avaiable, if not empty list
     """
     resultados = []
-    if type(passengerCount) is not int:
+    if type(passengerCount) is not int or passengerCount < 0:
         return resultados
     url = 'https://swapi-api.hbtn.io/api/starships/'
     while url:
