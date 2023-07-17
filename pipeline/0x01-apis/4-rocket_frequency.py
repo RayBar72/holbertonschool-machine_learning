@@ -29,7 +29,8 @@ def main():
     sort_name = dict(sorted(suma.items(), key=lambda x: x))
     sort_number = sorted(sort_name.items(), key=lambda x: x[1], reverse=True)
     for x in sort_number:
-        print('{}: {}'.format(x[0], x[1]))
+        if x[1] != 0:
+            print('{}: {}'.format(x[0], x[1]))
 
 
 if __name__ == '__main__':
