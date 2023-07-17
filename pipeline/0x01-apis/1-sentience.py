@@ -19,7 +19,7 @@ def sentientPlanets():
         resp_dict = resp.json()
         records = resp_dict['results']
         for record in records:
-            if record['designation'] == 'sentient':
+            if record['designation'] or record['classification'] == 'sentient':
                 resultados.append([record['designation'],
                                    record['name'], record['homeworld']])
         url = resp_dict['next']
