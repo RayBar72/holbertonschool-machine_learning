@@ -15,7 +15,6 @@ def main():
 
     url_launch = 'https://api.spacexdata.com/latest/launches/'
     resp_launc = requests.get(url_launch).json()
-    print(len(resp_rockets))
 
     id_name = {x['id']: x['name'] for x in resp_rockets}
     id_forsum = {x['id']: [] for x in resp_rockets}
