@@ -26,3 +26,7 @@ def main():
         now = int(time.time())
         remain = int((limit - now) / 60)
         print('Reset in {} min'.format(remain))
+
+
+if __name__ == '__main__':
+    main()
