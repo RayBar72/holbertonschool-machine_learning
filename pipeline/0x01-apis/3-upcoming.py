@@ -2,8 +2,25 @@
 """
 3-upcoming.py
 """
-import numpy as np
 import requests
+
+
+def maximus(fechas):
+    """Function that returns the argmax
+
+    Args:
+        fechas (list): list with the dates to be analized
+
+    Returns:
+        int: argmax
+    """
+    fecha = float('-inf')
+    retorno = float('-inf')
+    for i, f in enumerate(fechas):
+        if f > fecha:
+            fecha = f
+            retorno = i
+    return retorno
 
 
 def main():
@@ -22,7 +39,7 @@ def main():
     launch_rocketId = [x['rocket'] for x in lista]
     lauch_padId = [x['launchpad'] for x in lista]
 
-    max = np.argmax(launch_fechas)
+    max = maximus(launch_fechas)
     rockId = launch_rocketId[max]
     padId = lauch_padId[max]
 
