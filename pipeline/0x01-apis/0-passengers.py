@@ -16,22 +16,18 @@ def availableShips(passengerCount):
         list: ships avaiable, if not empty list
     """
     resultados = []
-    try:
-        if type(passengerCount) is not int or passengerCount <= 0:
-            return resultados
-        url = 'https://swapi-api.hbtn.io/api/starships/'
-        while url:
-            resp = requests.get(url)
-            resp_dict = resp.json()
-            records = resp_dict['results']
-            for record in records:
-                try:
-                    passa = int(record['passengers'])
-                except Exception as e:
-                    passa = float('-inf')
-                if passa >= passengerCount:
-                    resultados.append(record['name'])
-            url = resp_dict['next']
-        return resultados
-    except Exception as e:
-        return resultados
+    url = 'https://swapi-api.hbtn.io/api/starships/'
+    while url:
+        resp = requests.get(url)
+        resp_dict = resp.json()
+        records = resp_dict['results']
+        for record in records:
+            try:
+                passa = record['passengers'].replace(',', '')
+                passa = int(passa)
+            except Exception as e:
+                passa = float('-inf')
+            if passa >= passengerCount:
+                resultados.append(record['name'])
+        url = resp_dict['next']
+    return resultados
