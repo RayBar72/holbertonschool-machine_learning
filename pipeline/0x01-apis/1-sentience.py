@@ -13,7 +13,7 @@ def sentientPlanets():
         list: Home planets of sentient species
     """
     resultados = []
-    url = 'https://swapi-api.alx-tools.com/api/species/'
+    url = 'https://swapi-api.hbtn.io/api/species/'
     while url:
         resp = requests.get(url)
         resp_dict = resp.json()
