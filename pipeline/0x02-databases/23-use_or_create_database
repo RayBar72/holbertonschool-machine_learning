@@ -1,0 +1,2 @@
+// Script that creates a data base
+use my_db;
