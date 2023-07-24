@@ -14,4 +14,4 @@ def insert_school(mongo_collection, **kwargs):
     Returns:
         _id: returns the identifier
     """
-    return mongo_collection.insert_one(kwargs)
+    return mongo_collection.insert_one(kwargs).inserted_id
